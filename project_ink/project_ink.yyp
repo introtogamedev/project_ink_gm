@@ -34,10 +34,12 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"Slot","path":"scripts/Slot/Slot.yy",},},
+    {"id":{"name":"CardManager","path":"objects/CardManager/CardManager.yy",},},
+    {"id":{"name":"Scene_Rocky","path":"rooms/Scene_Rocky/Scene_Rocky.yy",},},
   ],
   "RoomOrderNodes": [
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"Scene_Rocky","path":"rooms/Scene_Rocky/Scene_Rocky.yy",},},
   ],
   "templateType": "game",
   "TextureGroups": [
