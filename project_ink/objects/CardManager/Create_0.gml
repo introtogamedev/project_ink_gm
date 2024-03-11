@@ -8,8 +8,14 @@ slot_y=527;
 slot_width=124;
 slot_height=182;
 slot_spacing=25;
+slot_padding=5;
 
 //slot array
 slots=array_create(5);
+for(var i=0;i<5;++i){
+	slots[i]=new Slot(i);
+}
+slots[0].card=new Card(spr_card1);
+slots[0].isNull=false;
 
 #endregion
