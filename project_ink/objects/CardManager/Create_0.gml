@@ -18,4 +18,15 @@ for(var i=0;i<5;++i){
 slots[0].card=new Card(spr_card1);
 slots[0].isNull=false;
 
+//card manager
+cards=array_create(7);
+cards[0].sprite=spr_card2;
+cards[7].sprite=spr_card1;
+for(var i=0;i<5;++i){
+	cards[i].sprite=spr_card1;
+}
+function distribute(){
+	
+}
+
 #endregion

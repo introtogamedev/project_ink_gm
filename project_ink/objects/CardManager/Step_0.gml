@@ -15,6 +15,3 @@ if(keyboard_check(vk_left)){
 	--slot_width;
 }
 //show_debug_message("("+string(slot_width)+","+string(slot_height)+")");
-
-
-
