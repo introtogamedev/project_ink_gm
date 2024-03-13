@@ -21,6 +21,7 @@
     {"name":"obj_player","order":2,"path":"objects/obj_player/obj_player.yy",},
     {"name":"obj_wall","order":4,"path":"objects/obj_wall/obj_wall.yy",},
     {"name":"RoomManager","order":3,"path":"objects/RoomManager/RoomManager.yy",},
+    {"name":"Scene_Charles","order":2,"path":"rooms/Scene_Charles/Scene_Charles.yy",},
     {"name":"Scene_Andy","order":1,"path":"rooms/Scene_Andy/Scene_Andy.yy",},
     {"name":"spr_background","order":4,"path":"sprites/spr_background/spr_background.yy",},
     {"name":"spr_card2","order":1,"path":"sprites/spr_card2/spr_card2.yy",},
