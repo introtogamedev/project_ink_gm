@@ -43,6 +43,7 @@
     {"id":{"name":"Slot","path":"scripts/Slot/Slot.yy",},},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_card1","path":"sprites/spr_card1/spr_card1.yy",},},
+    {"id":{"name":"DataStructures","path":"scripts/DataStructures/DataStructures.yy",},},
     {"id":{"name":"spr_card2","path":"sprites/spr_card2/spr_card2.yy",},},
     {"id":{"name":"spr_ground","path":"sprites/spr_ground/spr_ground.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
