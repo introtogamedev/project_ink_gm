@@ -17,6 +17,7 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"DataStructures","order":1,"path":"scripts/DataStructures/DataStructures.yy",},
     {"name":"spr_card2","order":1,"path":"sprites/spr_card2/spr_card2.yy",},
   ],
 }

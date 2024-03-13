@@ -37,6 +37,7 @@
     {"id":{"name":"Slot","path":"scripts/Slot/Slot.yy",},},
     {"id":{"name":"CardManager","path":"objects/CardManager/CardManager.yy",},},
     {"id":{"name":"spr_card1","path":"sprites/spr_card1/spr_card1.yy",},},
+    {"id":{"name":"DataStructures","path":"scripts/DataStructures/DataStructures.yy",},},
     {"id":{"name":"spr_card2","path":"sprites/spr_card2/spr_card2.yy",},},
     {"id":{"name":"Scene_Rocky","path":"rooms/Scene_Rocky/Scene_Rocky.yy",},},
   ],
