@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+#macro CARDLEN 7
 
 #region slot
 //----drawing params-----
@@ -19,21 +20,24 @@ slots[0].card=new Card(spr_card1);
 slots[0].isNull=false;
 
 //card manager
-cards=array_create(7);
-<<<<<<< Updated upstream
-=======
+cards=array_create(CARDLEN);
+
 card_pool={
-	length: 7,
-	array: array_create(7),
-	index: 0,
-	shuffle_index: 0,
-	
-}
+	length: CARDLEN,
+	originalCards: array_create(CARDLEN),
+	shuffledCards: ds_queue_create(),
+	discardedCards: new List(CARDLEN),
+	getCards: function (count){
+	},
+	shuffle: function(){
+	},
+	init: function(cards){
+		array_copy(originalCards, 0,cards, 0, CARDLEN);
+	}
+};
 	
 
->>>>>>> Stashed changes
 cards[0].sprite=spr_card2;
-cards[7].sprite=spr_card1;
 for(var i=0;i<5;++i){
 	cards[i].sprite=spr_card1;
 }
