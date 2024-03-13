@@ -5,7 +5,7 @@ function List(cap) constructor{
 	list=array_create(cap);
 	index=0;
 	add=function(item){
-		if(index==cap){
+		if(index==capacity){
 			show_debug_message("array out of capacity");
 			return;
 		}
@@ -16,5 +16,13 @@ function List(cap) constructor{
 	}
 	clear=function(){
 		index=0;
+	}
+	removeAt=function(i){
+		var tmp=list[i];
+		for(var j=i+1;j<index;++j){
+			list[j-1]=list[j];
+		}
+		--index;
+		return tmp;
 	}
 }
