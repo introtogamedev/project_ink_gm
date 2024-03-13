@@ -20,6 +20,18 @@ slots[0].isNull=false;
 
 //card manager
 cards=array_create(7);
+<<<<<<< Updated upstream
+=======
+card_pool={
+	length: 7,
+	array: array_create(7),
+	index: 0,
+	shuffle_index: 0,
+	
+}
+	
+
+>>>>>>> Stashed changes
 cards[0].sprite=spr_card2;
 cards[7].sprite=spr_card1;
 for(var i=0;i<5;++i){
