@@ -52,6 +52,10 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"Scene_Rocky","path":"rooms/Scene_Rocky/Scene_Rocky.yy",},},
+<<<<<<< Updated upstream
+=======
+    {"roomId":{"name":"Scene_Charles","path":"rooms/Scene_Charles/Scene_Charles.yy",},},
+>>>>>>> Stashed changes
     {"roomId":{"name":"Scene_Andy","path":"rooms/Scene_Andy/Scene_Andy.yy",},},
   ],
   "templateType":"game",

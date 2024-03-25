@@ -37,6 +37,7 @@ card_pool={
 	originalCards: array_create(CARDLEN),
 	shuffledCards: ds_queue_create(),
 	discardedCards: new List(CARDLEN),
+	returnedCards: new List(CARDLEN),
 	getCards: function (count){
 		ret=new List(count);
 		var i=0;
@@ -46,24 +47,44 @@ card_pool={
 		if(i<count){
 			show_debug_message("getCards: i<count, reshuffle")
 			shuffle();
-			for(;i<count;++i)
+			for(;i<count;++i){
+				if(ds_queue_size(shuffledCards)==0) show_debug_message("queue size is zero");
+				show_debug_message(ds_queue_head(shuffledCards)._name);
 				ret.add(ds_queue_dequeue(shuffledCards));
+			}
+		}
+		show_debug_message("getCards: ret.list.count="+string(ret.index));
+		for(var _i=0;_i<count;++_i){
+			returnedCards.add(ret.list[_i]);
 		}
 		return ret;
+		
+		//for(i=0;i<discardedCards.index;++i){
+		//	if(i<count)
+		//		ret.add(discardedCards.list[i]);
+		//}
 	},
 	shuffle: function(){
-		randomize();
-		indices=new List(discardedCards.index);
-		for(var i=0;i<discardedCards.index;++i){
-			indices.add(i);
-			show_debug_message("shuffle: indices "+string(i));
+		if(returnedCards!=pointer_null){
+			for(var i=0;i<returnedCards.index;++i){
+				discardedCards.add(returnedCards.list[i]);
+				show_debug_message("shuffle: add returnedCards: "+returnedCards.at(i)._name);
+			}
+			returnedCards.clear();
 		}
+		randomize();
 		var j;
 		var tmp;
 		for(var i=0;i<discardedCards.index;++i){
-			j=irandom(indices.index);
-			tmp=discardedCards.list[indices.removeAt(j)];
-			show_debug_message("j="+string(j)+" card="+string(tmp._name));
+			show_debug_message("shuffle: discardedCards["+string(i)+"]="+discardedCards.list[i]._name);
+		}
+		for(var i=discardedCards.index;i>0;--i){
+			j=irandom(discardedCards.index-1);
+			tmp=discardedCards.removeAt(j);
+			show_debug_message("i="+string(i)+", j="+string(j)+" card="+string(tmp._name));
+			for(var k=0;k<discardedCards.index;++k){
+				show_debug_message("    |shuffle: discardedCards["+string(k)+"]="+discardedCards.list[k]._name);
+			}
 			ds_queue_enqueue(shuffledCards,tmp);
 		}
 		discardedCards.clear();
@@ -90,6 +111,7 @@ function shootCard(){
 	slots[slot_start_index].card=pointer_null;
 	++slot_start_index;
 	if(slot_start_index>=slot_count){
+		slot_start_index=0;
 		distribute();
 	}
 }
