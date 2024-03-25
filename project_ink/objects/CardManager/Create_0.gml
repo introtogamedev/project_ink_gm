@@ -4,16 +4,18 @@
 
 #region slot
 //----drawing params-----
+slot_count=5;
 slot_x=90;
 slot_y=527;
 slot_width=124;
 slot_height=182;
 slot_spacing=25;
 slot_padding=5;
+slot_start_index=0;
 
 //slot array
-slots=array_create(5);
-for(var i=0;i<5;++i){
+slots=array_create(slot_count);
+for(var i=0;i<slot_count;++i){
 	slots[i]=new Slot(i);
 }
 
@@ -28,7 +30,6 @@ for(var i=1;i<CARDLEN;++i){
 		sprite: spr_card1,
 		_name: "card"+string(i)
 	};
-	show_debug_message("i="+string(i)+" name="+cards[i]._name);
 }
 
 card_pool={
@@ -43,6 +44,7 @@ card_pool={
 			ret.add(ds_queue_dequeue(shuffledCards));
 		}
 		if(i<count){
+			show_debug_message("getCards: i<count, reshuffle")
 			shuffle();
 			for(;i<count;++i)
 				ret.add(ds_queue_dequeue(shuffledCards));
@@ -54,6 +56,7 @@ card_pool={
 		indices=new List(discardedCards.index);
 		for(var i=0;i<discardedCards.index;++i){
 			indices.add(i);
+			show_debug_message("shuffle: indices "+string(i));
 		}
 		var j;
 		var tmp;
@@ -78,11 +81,22 @@ function distribute(){
 	newcards=card_pool.getCards(5);
 	for(var i=0;i<5;++i){
 		slots[i].card=newcards.list[i];
-		//show_debug_message("i="+string(i)+", list[i].sprite="+string(slots[i].card._name));
+		show_debug_message("distribute: i="+string(i)+", list[i].sprite="+string(slots[i].card._name));
 		slots[i].isNull=false;
+	}
+}
+function shootCard(){
+	slots[slot_start_index].isNull=true;
+	slots[slot_start_index].card=pointer_null;
+	++slot_start_index;
+	if(slot_start_index>=slot_count){
+		distribute();
 	}
 }
 
 distribute();
+
+//shoot cards
+shoot_card_index=0;
 
 #endregion
