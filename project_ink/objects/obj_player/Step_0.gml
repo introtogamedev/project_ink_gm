@@ -38,9 +38,14 @@ y += vsp;
 //shoot card
 if mouse_check_button_pressed(1)
 {
-	show_debug_message("Left mouse button pressed");
-    instance_create_layer(x, y-80, "Instances", obj_andytesting_card);
+	if (interval_countdown >= interval)
+	{
+		show_debug_message("Left mouse button pressed");
+		instance_create_layer(x, y-80, "Instances", obj_andytesting_card);
+		interval_countdown = 0;
+	}
 }
+interval_countdown ++;
 
 //invincible time
 if (invincible)
