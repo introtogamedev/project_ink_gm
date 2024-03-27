@@ -35,6 +35,7 @@
   "name":"project_ink",
   "resources":[
     {"id":{"name":"CardManager","path":"objects/CardManager/CardManager.yy",},},
+    {"id":{"name":"obj_andytesting_card","path":"objects/obj_andytesting_card/obj_andytesting_card.yy",},},
     {"id":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
@@ -49,6 +50,8 @@
     {"id":{"name":"spr_ground","path":"sprites/spr_ground/spr_ground.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},},
+    {"id":{"name":"Sprite7","path":"sprites/Sprite7/Sprite7.yy",},},
+    {"id":{"name":"spr_andytesting_card","path":"sprites/spr_andytesting_card/spr_andytesting_card.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",

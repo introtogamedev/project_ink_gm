@@ -10,3 +10,7 @@ jump_duration = 15;
 invincible = false;
 invincible_timer = 0;
 invincible_time = 20;
+
+mouse_left_button_pressed = false;
+interval = 10;
+interval_countdown = 0;
