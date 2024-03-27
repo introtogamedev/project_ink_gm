@@ -11,6 +11,5 @@ invincible = false;
 invincible_timer = 0;
 invincible_time = 20;
 
-mouse_left_button_pressed = false;
-interval = 10;
+interval = 30;
 interval_countdown = 0;
