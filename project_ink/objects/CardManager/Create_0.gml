@@ -122,7 +122,7 @@ function distribute(){
 }
 function shootCard(){
 	var tmp=new List(5);
-	tmp.add(slots[slot_start_index]);
+	tmp.add(slots[slot_start_index].card);
 	slots[slot_start_index].isNull=true;
 	slots[slot_start_index].card=pointer_null;
 	++slot_start_index;
