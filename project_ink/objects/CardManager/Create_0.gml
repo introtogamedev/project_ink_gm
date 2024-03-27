@@ -14,6 +14,9 @@ slot_padding=5;
 slot_start_index=0;
 
 //slot array
+//struct card
+//bool isNull
+//int freeze
 slots=array_create(slot_count);
 for(var i=0;i<slot_count;++i){
 	slots[i]=new Slot(i);
@@ -22,7 +25,7 @@ for(var i=0;i<slot_count;++i){
 //card manager
 cards=array_create(CARDLEN);
 cards[0]={
-	sprite: spr_card2,
+	sprite: spr_card1,
 	_name: "普攻",
 	damage: 1,
 	type: 1
@@ -34,31 +37,31 @@ cards[1]={
 	type: 2
 }
 cards[2]={
-	sprite: spr_card2,
+	sprite: spr_card3,
 	_name: "迅势",
 	damage: 0,
 	type: 3
 }
 cards[3]={
-	sprite: spr_card2,
+	sprite: spr_card4,
 	_name: "凝霜",
 	damage: 0,
 	type: 4
 }
 cards[4]={
-	sprite: spr_card2,
+	sprite: spr_card5,
 	_name: "破阵",
 	damage: 1,
 	type: 5
 }
 cards[5]={
-	sprite: spr_card2,
+	sprite: spr_card6,
 	_name: "疾风",
 	damage: 3,
 	type: 6
 }
 cards[6]={
-	sprite: spr_card2,
+	sprite: spr_card7,
 	_name: "连附",
 	damage: 0,
 	type: 7
@@ -114,15 +117,40 @@ card_pool.init(cards);
 card_pool.shuffle();
 	
 function distribute(){
-	newcards=card_pool.getCards(5);
+	var cnt=0;
 	for(var i=0;i<5;++i){
-		slots[i].card=newcards.list[i];
-		slots[i].isNull=false;
+		if(slots[i].isNull) { ++cnt;}
+	}
+	newcards=card_pool.getCards(cnt);
+	cnt=0;
+	for(var i=0;i<5;++i){
+		if(slots[i].isNull){
+			slots[i].card=newcards.list[cnt];
+			slots[i].isNull=false;
+			++cnt;
+		}
+		if(slots[i].freeze>0){
+			--slots[i].freeze;
+		}
 	}
 }
 function shootCard(){
+	while(slots[slot_start_index].freeze>0){
+		++slot_start_index;
+		if(slot_start_index>=slot_count){
+			slot_start_index=0;
+			distribute();
+		}
+	}
 	var tmp=new List(5);
 	tmp.add(slots[slot_start_index].card);
+	switch(tmp.list[0].type){
+		case 4:
+			slots[slot_start_index].freeze+=2;
+			break;
+		case 7:
+		
+	}
 	slots[slot_start_index].isNull=true;
 	slots[slot_start_index].card=pointer_null;
 	++slot_start_index;
