@@ -43,6 +43,15 @@ if mouse_check_button_pressed(1)
 		show_debug_message("Left mouse button pressed");
 		instance_create_layer(x, y-80, "Instances", obj_andytesting_card);
 		interval_countdown = 0;
+		var cards=CardManager.shootCard();
+		//cards.index
+		//cards.list[0]
+		//cards.at(0)
+		//cards: damage, type
+		for(var i=0;i<cards.index;++i){
+			show_debug_message(cards.list[i].damage);
+		}
+		
 	}
 }
 interval_countdown ++;
