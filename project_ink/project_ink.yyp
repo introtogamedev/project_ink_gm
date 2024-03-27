@@ -53,6 +53,10 @@
   "RoomOrderNodes":[
     {"roomId":{"name":"Scene_Rocky","path":"rooms/Scene_Rocky/Scene_Rocky.yy",},},
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    {"roomId":{"name":"Scene_Charles","path":"rooms/Scene_Charles/Scene_Charles.yy",},},
+>>>>>>> Stashed changes
 =======
     {"roomId":{"name":"Scene_Charles","path":"rooms/Scene_Charles/Scene_Charles.yy",},},
 >>>>>>> Stashed changes

@@ -23,13 +23,45 @@ for(var i=0;i<slot_count;++i){
 cards=array_create(CARDLEN);
 cards[0]={
 	sprite: spr_card2,
-	_name: "card0"
+	_name: "普攻",
+	damage: 1,
+	type: 1
 };
-for(var i=1;i<CARDLEN;++i){
-	cards[i]={
-		sprite: spr_card1,
-		_name: "card"+string(i)
-	};
+cards[1]={
+	sprite: spr_card2,
+	_name: "重击",
+	damage: 2,
+	type: 2
+}
+cards[2]={
+	sprite: spr_card2,
+	_name: "迅势",
+	damage: 0,
+	type: 3
+}
+cards[3]={
+	sprite: spr_card2,
+	_name: "凝霜",
+	damage: 0,
+	type: 4
+}
+cards[4]={
+	sprite: spr_card2,
+	_name: "破阵",
+	damage: 1,
+	type: 5
+}
+cards[5]={
+	sprite: spr_card2,
+	_name: "疾风",
+	damage: 3,
+	type: 6
+}
+cards[6]={
+	sprite: spr_card2,
+	_name: "连附",
+	damage: 0,
+	type: 7
 }
 
 card_pool={
@@ -45,46 +77,29 @@ card_pool={
 			ret.add(ds_queue_dequeue(shuffledCards));
 		}
 		if(i<count){
-			show_debug_message("getCards: i<count, reshuffle")
 			shuffle();
 			for(;i<count;++i){
-				if(ds_queue_size(shuffledCards)==0) show_debug_message("queue size is zero");
-				show_debug_message(ds_queue_head(shuffledCards)._name);
 				ret.add(ds_queue_dequeue(shuffledCards));
 			}
 		}
-		show_debug_message("getCards: ret.list.count="+string(ret.index));
 		for(var _i=0;_i<count;++_i){
 			returnedCards.add(ret.list[_i]);
 		}
 		return ret;
-		
-		//for(i=0;i<discardedCards.index;++i){
-		//	if(i<count)
-		//		ret.add(discardedCards.list[i]);
-		//}
 	},
 	shuffle: function(){
 		if(returnedCards!=pointer_null){
 			for(var i=0;i<returnedCards.index;++i){
 				discardedCards.add(returnedCards.list[i]);
-				show_debug_message("shuffle: add returnedCards: "+returnedCards.at(i)._name);
 			}
 			returnedCards.clear();
 		}
 		randomize();
 		var j;
 		var tmp;
-		for(var i=0;i<discardedCards.index;++i){
-			show_debug_message("shuffle: discardedCards["+string(i)+"]="+discardedCards.list[i]._name);
-		}
 		for(var i=discardedCards.index;i>0;--i){
 			j=irandom(discardedCards.index-1);
 			tmp=discardedCards.removeAt(j);
-			show_debug_message("i="+string(i)+", j="+string(j)+" card="+string(tmp._name));
-			for(var k=0;k<discardedCards.index;++k){
-				show_debug_message("    |shuffle: discardedCards["+string(k)+"]="+discardedCards.list[k]._name);
-			}
 			ds_queue_enqueue(shuffledCards,tmp);
 		}
 		discardedCards.clear();
@@ -102,11 +117,12 @@ function distribute(){
 	newcards=card_pool.getCards(5);
 	for(var i=0;i<5;++i){
 		slots[i].card=newcards.list[i];
-		show_debug_message("distribute: i="+string(i)+", list[i].sprite="+string(slots[i].card._name));
 		slots[i].isNull=false;
 	}
 }
 function shootCard(){
+	var tmp=new List(5);
+	tmp.add(slots[slot_start_index]);
 	slots[slot_start_index].isNull=true;
 	slots[slot_start_index].card=pointer_null;
 	++slot_start_index;
@@ -114,6 +130,7 @@ function shootCard(){
 		slot_start_index=0;
 		distribute();
 	}
+	return tmp;
 }
 
 distribute();
