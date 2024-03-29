@@ -8,3 +8,4 @@ function Slot(_index) constructor{
 function Card(spr) constructor{
 	sprite=spr;
 }
+

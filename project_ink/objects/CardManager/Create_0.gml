@@ -13,6 +13,26 @@ slot_spacing=25;
 slot_padding=5;
 slot_start_index=0;
 
+#region draw card operation
+function getCardBoundsInSlot(idx){
+	var ret={};
+	ret.x=slot_x+(slot_width+slot_spacing)*idx+slot_padding;
+	ret.y=slot_y+slot_padding;
+	ret.w=slot_width-(slot_padding<<1);
+	ret.h=slot_height-(slot_padding<<1);
+	return ret;
+}
+enum CardState{
+	idle,
+	deal,
+	deal_animation
+};
+cardStateMachine={
+	dealIndex: 0
+};
+
+
+#endregion
 //slot array
 //struct card
 //bool isNull
@@ -20,8 +40,11 @@ slot_start_index=0;
 slots=array_create(slot_count);
 for(var i=0;i<slot_count;++i){
 	slots[i]=new Slot(i);
+	slots[i].bounds=getCardBoundsInSlot(i);
 }
+#endregion
 
+#region cards
 //card manager
 cards=array_create(CARDLEN);
 cards[0]={
@@ -88,6 +111,15 @@ card_pool={
 		for(var _i=0;_i<count;++_i){
 			returnedCards.add(ret.list[_i]);
 		}
+		return ret;
+	},
+	getCard: function(){
+		var ret;
+		var i=0;
+		if(ds_queue_size(shuffledCards)==0)
+			shuffle();
+		ret=ds_queue_dequeue(shuffledCards);
+		returnedCards.add(ret);
 		return ret;
 	},
 	shuffle: function(){
@@ -161,9 +193,42 @@ function shootCard(){
 	return tmp;
 }
 
-distribute();
+#region state functions
+function csm_idle(sm){
+}
+function csm_deal(sm){
+	if(sm.dealIndex>4){
+		sm.dealIndex=0;
+		sm.goto(CardState.idle);
+		return;
+	}
+	if(slots[i].isNull){
+		slots[i].card=card_pool.getCard();
+		slots[i].card.bounds=new Bounds(1400, slot_y, slots[i].bounds.w, slots[i].bounds.h);
+		slots[i].isNull=false;
+	}
+	if(slots[i].freeze>0){
+		--slots[i].freeze;
+	}
+	++sm.dealIndex;
+	sm.goto(CardState.deal_animation);
+}
+function csm_deal_animation(sm){
+	s=slots[sm.deadIndex-1];
+	s.card.bounds.x=lerp(s.card.bounds.x, s.bounds.x,.05);
+	s.card.bounds.y=lerp(s.card.bounds.y, s.bounds.y,.05);
+}
 
+cardStateMachine.goto=function(stateenum){
+	switch(stateenum){
+		case CardState.idle: cardStateMachine.cur=csm_idle; break;
+		case CardState.deal: cardStateMachine.cur=csm_deal; break;
+		case CardState.deal_animation: cardStateMachine.cur=csm_deal_animation; break;
+	}
+	cardStateMachine.curState=stateenum;
+}
+cardStateMachine.goto(CardState.deal);
+#endregion
 //shoot cards
 shoot_card_index=0;
-
 #endregion

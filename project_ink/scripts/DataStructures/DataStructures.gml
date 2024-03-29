@@ -26,6 +26,15 @@ function List(cap) constructor{
 		return tmp;
 	}
 }
+function Bounds(_x,_y,_w,_h) constructor{
+	x=_x;
+	y=_y;
+	w=_w;
+	h=_h;
+}
+function copyBounds(bd){
+	return new Bounds(bd.x,bd.y,bd.w,bd.h);
+}
 //-----card-----
 //1: 普通攻击 d: 1
 //2: 重击 d:2
@@ -35,7 +44,7 @@ function List(cap) constructor{
 //6: 疾风
 //7: 连附
 
-function copyCard(struct){
+function copy_struct(struct){
 	var key, value;
     var newCopy = {};
     var keys = variable_struct_get_names(struct);
