@@ -3,7 +3,9 @@
 function Slot(_index) constructor{
 	index=_index;
 	isNull=true;
+	freeze=0;
 }
 function Card(spr) constructor{
 	sprite=spr;
 }
+
