@@ -21,7 +21,6 @@ slots=array_create(slot_count);
 for(var i=0;i<slot_count;++i){
 	slots[i]=new Slot(i);
 }
-
 //card manager
 cards=array_create(CARDLEN);
 cards[0]={
