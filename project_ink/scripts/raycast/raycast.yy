@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"raycast",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"raycast",
+  "parent":{
+    "name":"Raycast",
+    "path":"folders/Scripts/Raycast.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
