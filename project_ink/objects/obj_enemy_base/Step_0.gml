@@ -1,3 +1,7 @@
+var _distx = abs(x - obj_player.x);
+var _disty = abs(y - obj_player.y);
+var _dist = sqrt(sqr(_distx) + sqr(_disty))
+
 switch(current_state)
 {
 	case ENEMY_STATES.IDLE:
@@ -11,6 +15,8 @@ switch(current_state)
 		}
 		else if(inner_state == 1)
 		{
+			
+			
 			if(timer < idle_time)
 			{
 				timer += delta_time/1000000;
@@ -18,6 +24,13 @@ switch(current_state)
 			else
 			{
 				inner_state = 2;	
+			}
+			
+			if(_dist < detect_dist)
+			{
+				change_state(ENEMY_STATES.CHASE);
+				current_state = next_state;
+				inner_state = 0;
 			}
 		}
 		else if(inner_state == 2)
@@ -41,6 +54,7 @@ switch(current_state)
 			}
 			else if(inner_state == 1)
 			{
+				
 				vel_x = idle_spd * image_xscale;
 				x += vel_x;
 				
@@ -48,6 +62,14 @@ switch(current_state)
 				{
 					inner_state = 2;
 				}
+				
+				if(_dist < detect_dist)
+				{
+					change_state(ENEMY_STATES.CHASE);
+					current_state = next_state;
+					inner_state = 0;
+				}
+				
 			}
 			else if(inner_state == 2)
 			{
@@ -58,10 +80,45 @@ switch(current_state)
 			}
 		break;
 	case ENEMY_STATES.CHASE:
-	
+			if(inner_state == 0)
+			{
+				inner_state = 1;
+			}
+			else if(inner_state == 1)
+			{
+				flip_to_target(obj_player);
+				vel_x = image_xscale * chase_spd;
+			
+				if(place_meeting(x + vel_x, y, obj_ground))
+				{
+					vel_x = 0;
+				}
+			
+				if(_dist > detect_dist)
+				{
+					change_state(ENEMY_STATES.PATROL);
+					current_state = next_state;
+					inner_state = 0;
+				}
+			
+				x += vel_x;
+			}
+			else if(inner_state == 2)
+			{
+				
+			}
 		break;
 		
 	case ENEMY_STATES.ATTACK:
 	
 		break;
+}
+
+if(current_state == ENEMY_STATES.CHASE)
+{
+	image_alpha = 0.5;
+}
+else
+{
+	image_alpha = 1;
 }

@@ -17,6 +17,10 @@ idle_spd = 4;
 idle_time = 1;
 timer = 0;
 
+//chase variables
+chase_spd = 5;
+
+
 //get a random initial direction
 randomise();
 var _dir = irandom(1);
