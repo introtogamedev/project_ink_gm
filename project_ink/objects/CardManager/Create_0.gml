@@ -25,46 +25,56 @@ for(var i=0;i<slot_count;++i){
 //card manager
 cards=array_create(CARDLEN);
 cards[0]={
+	obj: instance_create_layer(0,0,"Instances", obj_card),
 	sprite: spr_card1,
 	_name: "普攻",
 	damage: 1,
 	type: 1
 };
 cards[1]={
+	obj: instance_create_layer(0,0,"Instances", obj_card),
 	sprite: spr_card2,
 	_name: "重击",
 	damage: 2,
 	type: 2
 }
 cards[2]={
+	obj: instance_create_layer(0,0,"Instances", obj_card),
 	sprite: spr_card3,
 	_name: "迅势",
 	damage: 0,
 	type: 3
 }
 cards[3]={
+	obj: instance_create_layer(0,0,"Instances", obj_card),
 	sprite: spr_card4,
 	_name: "凝霜",
 	damage: 0,
 	type: 4
 }
 cards[4]={
+	obj: instance_create_layer(0,0,"Instances", obj_card),
 	sprite: spr_card5,
 	_name: "破阵",
 	damage: 1,
 	type: 5
 }
 cards[5]={
+	obj: instance_create_layer(0,0,"Instances", obj_card),
 	sprite: spr_card6,
 	_name: "疾风",
 	damage: 3,
 	type: 6
 }
 cards[6]={
+	obj: instance_create_layer(0,0,"Instances", obj_card),
 	sprite: spr_card7,
 	_name: "连附",
 	damage: 0,
 	type: 7
+}
+for(var i=0;i<CARDLEN;++i){
+	cards[i].obj.sprite_index=cards[i].sprite;
 }
 
 card_pool={
