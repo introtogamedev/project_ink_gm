@@ -7,5 +7,4 @@ if(keyboard_check_pressed(ord("F"))){
 if(keyboard_check_pressed(vk_enter)){
 	distribute();
 }
-cardStateMachine.cur();
 //show_debug_message("("+string(slot_width)+","+string(slot_height)+")");

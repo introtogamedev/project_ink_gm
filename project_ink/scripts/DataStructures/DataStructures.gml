@@ -10,6 +10,11 @@ function List(cap) constructor{
 			return;
 		}
 		list[index++]=item;
+	};
+	addRange=function(ls){
+		for(var i=0;i<ls.index;++i){
+			add(ls.list[i]);
+		}
 	}
 	at=function(i){
 		return list[i];
