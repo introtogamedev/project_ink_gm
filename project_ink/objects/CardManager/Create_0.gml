@@ -24,6 +24,7 @@ for(var i=0;i<slot_count;++i){
 //card manager
 cards=array_create(CARDLEN);
 cards[0]={
+	//obj: instance_create_layer
 	sprite: spr_card1,
 	_name: "普攻",
 	damage: 1,
