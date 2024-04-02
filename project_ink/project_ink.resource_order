@@ -38,6 +38,7 @@
     {"name":"spr_ground","order":2,"path":"sprites/spr_ground/spr_ground.yy",},
     {"name":"spr_player","order":3,"path":"sprites/spr_player/spr_player.yy",},
     {"name":"spr_wall","order":5,"path":"sprites/spr_wall/spr_wall.yy",},
+    {"name":"spr_frozen","order":14,"path":"sprites/spr_frozen/spr_frozen.yy",},
     {"name":"Sprite7","order":6,"path":"sprites/Sprite7/Sprite7.yy",},
   ],
 }
