@@ -25,49 +25,49 @@ for(var i=0;i<slot_count;++i){
 //card manager
 cards=array_create(CARDLEN);
 cards[0]={
-	obj: instance_create_layer(0,0,"Instances", obj_card),
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card1,
 	_name: "普攻",
 	damage: 1,
 	type: 1
 };
 cards[1]={
-	obj: instance_create_layer(0,0,"Instances", obj_card),
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card2,
 	_name: "重击",
 	damage: 2,
 	type: 2
 }
 cards[2]={
-	obj: instance_create_layer(0,0,"Instances", obj_card),
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card3,
 	_name: "迅势",
 	damage: 0,
 	type: 3
 }
 cards[3]={
-	obj: instance_create_layer(0,0,"Instances", obj_card),
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card4,
 	_name: "凝霜",
 	damage: 0,
 	type: 4
 }
 cards[4]={
-	obj: instance_create_layer(0,0,"Instances", obj_card),
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card5,
 	_name: "破阵",
 	damage: 1,
 	type: 5
 }
 cards[5]={
-	obj: instance_create_layer(0,0,"Instances", obj_card),
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card6,
 	_name: "疾风",
 	damage: 3,
 	type: 6
 }
 cards[6]={
-	obj: instance_create_layer(0,0,"Instances", obj_card),
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card7,
 	_name: "连附",
 	damage: 0,
@@ -75,6 +75,9 @@ cards[6]={
 }
 for(var i=0;i<CARDLEN;++i){
 	cards[i].obj.sprite_index=cards[i].sprite;
+	cards[i].obj.image_xscale=(slot_width-(slot_padding<<1))/cards[i].obj.sprite_width;
+	cards[i].obj.image_yscale=(slot_height-(slot_padding<<1))/cards[i].obj.sprite_height;
+	cards[i].obj.visible=false;
 }
 
 card_pool={
@@ -94,9 +97,6 @@ card_pool={
 			for(;i<count;++i){
 				ret.add(ds_queue_dequeue(shuffledCards));
 			}
-		}
-		for(var _i=0;_i<count;++_i){
-			returnedCards.add(ret.list[_i]);
 		}
 		return ret;
 	},
@@ -133,11 +133,18 @@ function distribute(){
 	}
 	newcards=card_pool.getCards(cnt);
 	cnt=0;
+	var tmp=pointer_null;
 	for(var i=0;i<5;++i){
 		if(slots[i].isNull){
 			slots[i].card=newcards.list[cnt];
+			slots[i].card.obj.x=slot_x+slot_padding+i*(slot_width+slot_spacing);
+			slots[i].card.obj.y=slot_y+slot_padding;
+			slots[i].card.obj.visible=true;
 			slots[i].isNull=false;
 			++cnt;
+		}
+		else{
+			tmp=slots[i].card.obj;
 		}
 		if(slots[i].freeze>0){
 			--slots[i].freeze;
@@ -153,7 +160,9 @@ function shootCard(){
 		}
 	}
 	var tmp=new List(5);
+	slots[slot_start_index].card.obj.visible=false;
 	tmp.add(slots[slot_start_index].card);
+	card_pool.returnedCards.add(slots[slot_start_index].card);
 	slots[slot_start_index].isNull=true;
 	slots[slot_start_index].card=pointer_null;
 	switch(tmp.list[0].type){  //implement different card effects
