@@ -151,26 +151,43 @@ function distribute(){
 		}
 	}
 }
+function discardNextCard(){
+	var tmp=slot_start_index+1;
+	for(var i=tmp ;i<5;++i){
+		if(slots[i].freeze==0){
+			card_pool.discardedCards.add(slots[i].card);
+			slots[i].isNull=true;
+			slots[i].card.obj.visible=false;
+			slots[i].card=pointer_null;
+			return;
+		}
+	}
+}
 function shootCard(){
 	var tmp=new List(5);
-	slots[slot_start_index].card.obj.visible=false;
-	tmp.add(slots[slot_start_index].card);
-	card_pool.returnedCards.add(slots[slot_start_index].card);
-	slots[slot_start_index].isNull=true;
-	slots[slot_start_index].card=pointer_null;
-	switch(tmp.list[0].type){  //implement different card effects
-		case 4: //freeze
-			slots[slot_start_index].freeze+=2;
-			break;
-		case 7: //connect
-			for(var i=slot_start_index+1 ;i<5;++i){
-				if(slots[slot_start_index].freeze==0){
-					slot_start_index=i;
-					tmp.addRange(shootCard());
-					return tmp;
+	if(!slots[slot_start_index].isNull){
+		slots[slot_start_index].card.obj.visible=false;
+		tmp.add(slots[slot_start_index].card);
+		card_pool.returnedCards.add(slots[slot_start_index].card);
+		slots[slot_start_index].isNull=true;
+		slots[slot_start_index].card=pointer_null;
+		switch(tmp.list[0].type){  //implement different card effects
+			case 4: //freeze
+				slots[slot_start_index].freeze+=2;
+				break;
+			case 6: //hurricane
+				discardNextCard();
+				break;
+			case 7: //connect
+				for(var i=slot_start_index+1 ;i<5;++i){
+					if(slots[slot_start_index].freeze==0){
+						slot_start_index=i;
+						tmp.addRange(shootCard());
+						return tmp;
+					}
 				}
-			}
-			break;
+				break;
+		}
 	}
 	++slot_start_index;
 	if(slot_start_index>=slot_count){
