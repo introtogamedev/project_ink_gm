@@ -44,7 +44,8 @@ switch(current_state)
 	case ENEMY_STATES.PATROL:
 			if(inner_state == 0)
 			{
-				if(place_meeting(x + image_xscale*idle_spd, y, wall))
+				if(place_meeting(x + image_xscale*idle_spd, y, wall)
+				|| !place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall))
 				{
 					image_xscale *= -1;
 				}
@@ -58,9 +59,11 @@ switch(current_state)
 				vel_x = idle_spd * image_xscale;
 				x += vel_x;
 				
-				if(place_meeting(x + image_xscale * idle_spd, y, wall))
+				if(place_meeting(x + image_xscale * idle_spd, y, wall) 
+				|| !place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall))
 				{
 					inner_state = 2;
+					show_debug_message("pp")
 				}
 				
 				if(_dist < detect_dist)
@@ -96,7 +99,8 @@ switch(current_state)
 					vel_x = 0;
 				}
 			
-				if(place_meeting(x + vel_x, y, obj_ground))
+				if(place_meeting(x + vel_x, y, obj_ground)
+				|| !place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall))
 				{
 					vel_x = 0;
 				}
@@ -120,6 +124,7 @@ switch(current_state)
 	
 		break;
 }
+
 
 if(current_state == ENEMY_STATES.CHASE)
 {
