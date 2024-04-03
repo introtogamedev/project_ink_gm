@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-#macro CARDLEN 7
+#macro CARDLEN 12
 
 #region slot
 //----drawing params-----
@@ -33,40 +33,75 @@ cards[0]={
 };
 cards[1]={
 	obj: instance_create_layer(0,0,"Cards", obj_card),
+	sprite: spr_card1,
+	_name: "普攻",
+	damage: 1,
+	type: 1
+};
+cards[2]={
+	obj: instance_create_layer(0,0,"Cards", obj_card),
+	sprite: spr_card1,
+	_name: "普攻",
+	damage: 1,
+	type: 1
+};
+cards[3]={
+	obj: instance_create_layer(0,0,"Cards", obj_card),
+	sprite: spr_card1,
+	_name: "普攻",
+	damage: 1,
+	type: 1
+};
+cards[4]={
+	obj: instance_create_layer(0,0,"Cards", obj_card),
+	sprite: spr_card1,
+	_name: "普攻",
+	damage: 1,
+	type: 1
+};
+cards[5]={
+	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card2,
 	_name: "重击",
 	damage: 2,
 	type: 2
 }
-cards[2]={
+cards[6]={
+	obj: instance_create_layer(0,0,"Cards", obj_card),
+	sprite: spr_card2,
+	_name: "重击",
+	damage: 2,
+	type: 2
+}
+cards[7]={
 	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card3,
 	_name: "迅势",
 	damage: 0,
 	type: 3
 }
-cards[3]={
+cards[8]={
 	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card4,
 	_name: "凝霜",
 	damage: 0,
 	type: 4
 }
-cards[4]={
+cards[9]={
 	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card5,
 	_name: "破阵",
 	damage: 1,
 	type: 5
 }
-cards[5]={
+cards[10]={
 	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card6,
 	_name: "疾风",
 	damage: 3,
 	type: 6
 }
-cards[6]={
+cards[11]={
 	obj: instance_create_layer(0,0,"Cards", obj_card),
 	sprite: spr_card7,
 	_name: "连附",
