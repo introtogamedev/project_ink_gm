@@ -179,6 +179,7 @@ function shootCard(){
 				discardNextCard();
 				break;
 			case 7: //connect
+				--card_pool.returnedCards.index;
 				for(var i=slot_start_index+1 ;i<5;++i){
 					if(slots[slot_start_index].freeze==0){
 						slot_start_index=i;
