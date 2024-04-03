@@ -152,13 +152,6 @@ function distribute(){
 	}
 }
 function shootCard(){
-	while(slots[slot_start_index].freeze>0){
-		++slot_start_index;
-		if(slot_start_index>=slot_count){
-			slot_start_index=0;
-			distribute();
-		}
-	}
 	var tmp=new List(5);
 	slots[slot_start_index].card.obj.visible=false;
 	tmp.add(slots[slot_start_index].card);
@@ -183,6 +176,13 @@ function shootCard(){
 	if(slot_start_index>=slot_count){
 		slot_start_index=0;
 		distribute();
+	}
+	while(slots[slot_start_index].freeze>0){
+		++slot_start_index;
+		if(slot_start_index>=slot_count){
+			slot_start_index=0;
+			distribute();
+		}
 	}
 	return tmp;
 }
