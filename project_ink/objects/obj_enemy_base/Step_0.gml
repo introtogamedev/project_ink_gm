@@ -86,8 +86,15 @@ switch(current_state)
 			}
 			else if(inner_state == 1)
 			{
-				flip_to_target(obj_player);
-				vel_x = image_xscale * chase_spd;
+				if(_dist > cell_size * 1.5)
+				{
+					flip_to_target(obj_player);
+					vel_x = image_xscale * chase_spd;
+				}
+				else
+				{
+					vel_x = 0;
+				}
 			
 				if(place_meeting(x + vel_x, y, obj_ground))
 				{
