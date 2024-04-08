@@ -52,5 +52,5 @@ function flip_to_target(_target)
 
 wall = obj_ground;
 cell_size = 64;
-detect_dist = cell_size * 8;
+detect_dist = cell_size * 6;
 raycast_test = noone;
