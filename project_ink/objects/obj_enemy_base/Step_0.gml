@@ -15,8 +15,6 @@ switch(current_state)
 		}
 		else if(inner_state == 1)
 		{
-			
-			
 			if(timer < idle_time)
 			{
 				timer += delta_time/1000000;
@@ -45,7 +43,8 @@ switch(current_state)
 			if(inner_state == 0)
 			{
 				if(place_meeting(x + image_xscale*idle_spd, y, wall)
-				|| !place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall))
+				|| (!place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall) && image_xscale < 0)
+				|| (!place_meeting(x + sprite_width , y + cell_size, wall) && image_xscale >= 0))
 				{
 					image_xscale *= -1;
 				}
@@ -59,11 +58,11 @@ switch(current_state)
 				vel_x = idle_spd * image_xscale;
 				x += vel_x;
 				
-				if(place_meeting(x + image_xscale * idle_spd, y, wall) 
-				|| !place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall))
+				if(place_meeting(x + image_xscale * idle_spd, y, wall)
+				|| (!place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall) && image_xscale < 0)
+				|| (!place_meeting(x + sprite_width , y + cell_size, wall) && image_xscale >= 0))
 				{
 					inner_state = 2;
-					show_debug_message("pp")
 				}
 				
 				if(_dist < detect_dist)
@@ -100,7 +99,8 @@ switch(current_state)
 				}
 			
 				if(place_meeting(x + vel_x, y, obj_ground)
-				|| !place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall))
+				|| (!place_meeting(x + image_xscale * -1 * sprite_width, y + cell_size, wall) && image_xscale < 0)
+				|| (!place_meeting(x + sprite_width , y + cell_size, wall) && image_xscale >= 0))
 				{
 					vel_x = 0;
 				}
@@ -134,3 +134,4 @@ else
 {
 	image_alpha = 1;
 }
+show_debug_message(image_xscale);
