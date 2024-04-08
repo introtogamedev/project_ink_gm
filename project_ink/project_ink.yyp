@@ -67,6 +67,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"Scene_Andy","path":"rooms/Scene_Andy/Scene_Andy.yy",},},
+    {"roomId":{"name":"Charles","path":"rooms/Charles/Charles.yy",},},
     {"roomId":{"name":"Scene_Rocky","path":"rooms/Scene_Rocky/Scene_Rocky.yy",},},
     {"roomId":{"name":"Charles","path":"rooms/Charles/Charles.yy",},},
   ],
