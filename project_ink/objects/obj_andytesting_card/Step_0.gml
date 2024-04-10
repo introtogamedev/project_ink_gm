@@ -13,4 +13,5 @@ var _inst = instance_place(x, y, obj_enemy_base)
 if(_inst)
 {
 	_inst.lose_hp(card.damage);
+	onHitEnemy(_inst);
 }

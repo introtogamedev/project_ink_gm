@@ -4,4 +4,12 @@
 card={};
 
 function onHitEnemy(enemy){
+	switch(card.type){
+		case 5: //破阵
+		instance_create_layer(x, y, "Instances", obj_explosion);
+		//aoe.card=card; /////////    aoe.damage=card.aoe;
+		break;
+	}
+	
+	
 }
