@@ -13,3 +13,5 @@ invincible_time = 20;
 
 interval = 30;
 interval_countdown = 0;
+
+player_health = 30;
