@@ -48,7 +48,9 @@ if mouse_check_button_pressed(1)
 		//cards.list[0]
 		//cards.at(0)
 		//cards: damage, type
-		for(var i=0;i<cards.index;++i){
+		var i=0;
+		instantiateBullet(cards.list[i]);
+		for(var i=1;i<cards.index;++i){
 			addBullet(cards.list[i]);
 			show_debug_message(cards.list[i]._name);
 		}
@@ -60,12 +62,11 @@ interval_countdown ++;
 
 if(ds_queue_size(bulletQueue)>0){
     ++bulletCounter;
-    if(bulletCounter==bulletTimer){
-		
+    if(bulletCounter>=bulletTimer){
         bullet=ds_queue_dequeue(bulletQueue);
         instantiateBullet(bullet);
+		bulletCounter=0;
     }
-    bulletCounter=0;
 }
 
 //invincible time

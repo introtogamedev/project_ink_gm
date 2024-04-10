@@ -16,11 +16,12 @@ interval_countdown = 0;
 
 player_health = 30;
 
-bulletTimer=30;
+bulletTimer=10;
 bulletCounter=0;
 bulletQueue = ds_queue_create();
 
 function addBullet(_card){
+	show_debug_message("enqueue");
     ds_queue_enqueue(bulletQueue, _card);
 }
 function instantiateBullet(_card){
