@@ -236,6 +236,9 @@ function shootCard(){
 			distribute();
 		}
 	}
+	if(tmp.index==0){ //if no cards are shot
+		tmp.add(makeEmptyCard());
+	}
 	return tmp;
 }
 
