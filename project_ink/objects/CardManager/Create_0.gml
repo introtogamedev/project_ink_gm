@@ -92,6 +92,7 @@ cards[9]={
 	sprite: spr_card5,
 	_name: "破阵",
 	damage: 1,
+	aoe: 1,
 	type: 5
 }
 cards[10]={
