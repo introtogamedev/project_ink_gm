@@ -52,6 +52,7 @@ if mouse_check_button_pressed(1)
 		//cards.at(0)
 		//cards: damage, type
 		for(var i=0;i<cards.index;++i){
+			alarm[0]=10;
 			show_debug_message(cards.list[i]._name);
 		}
 		
