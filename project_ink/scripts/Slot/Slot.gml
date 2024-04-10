@@ -8,3 +8,12 @@ function Slot(_index) constructor{
 function Card(spr) constructor{
 	sprite=spr;
 }
+function makeEmptyCard(){
+	var card={};
+	card.obj=pointer_null;
+	card.sprite=pointer_null;
+	card._name="empty";
+	card.damage=0;
+	card.type=-1;
+	return card;
+}
