@@ -134,4 +134,9 @@ else
 {
 	image_alpha = 1;
 }
-show_debug_message(image_xscale);
+
+if(hp <= 0)
+{
+	instance_destroy();
+}
+show_debug_message(hp);

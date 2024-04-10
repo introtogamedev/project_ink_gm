@@ -54,3 +54,10 @@ wall = obj_ground;
 cell_size = 64;
 detect_dist = cell_size * 6;
 raycast_test = noone;
+
+hp = 10;
+
+function lose_hp(_hp)
+{
+	hp -= _hp;
+}
