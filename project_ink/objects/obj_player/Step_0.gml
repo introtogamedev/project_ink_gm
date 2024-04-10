@@ -40,10 +40,7 @@ if mouse_check_button_pressed(1)
 {
 	if (interval_countdown >= interval)
 	{
-		card_direction = instance_create_layer(x, y-80, "Instances", obj_andytesting_card);
-		card_direction.speed = 30;
-		card_direction.direction = point_direction(x,y-70,mouse_x,mouse_y);
-		card_direction.image_angle = card_direction.direction;
+		//
 		
 		interval_countdown = 0;
 		var cards=CardManager.shootCard();
@@ -52,13 +49,24 @@ if mouse_check_button_pressed(1)
 		//cards.at(0)
 		//cards: damage, type
 		for(var i=0;i<cards.index;++i){
-			alarm[0]=10;
+			addBullet(cards.list[i]);
 			show_debug_message(cards.list[i]._name);
 		}
 		
 	}
 }
+
 interval_countdown ++;
+
+if(ds_queue_size(bulletQueue)>0){
+    ++bulletCounter;
+    if(bulletCounter==bulletTimer){
+		
+        bullet=ds_queue_dequeue(bulletQueue);
+        instantiateBullet(bullet);
+    }
+    bulletCounter=0;
+}
 
 //invincible time
 if (invincible)
