@@ -79,7 +79,7 @@ if (!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && !keyboard_check(or
 {
     sprite_index = anim_idle;
 }
-else if (vsp > 0)
+if (vsp > 0)
 {
     sprite_index = anim_fall;
 }
