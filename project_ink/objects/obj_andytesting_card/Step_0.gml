@@ -14,4 +14,5 @@ if(_inst)
 {
 	_inst.lose_hp(card.damage);
 	onHitEnemy(_inst);
+	instance_destroy();
 }
