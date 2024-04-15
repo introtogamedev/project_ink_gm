@@ -18,12 +18,8 @@ function makeEmptyCard(){
 	return card;
 }
 function makeCardFromCollection(prototype){
-	var card={};
+	var card=copy_struct(prototype);
 	card.obj= instance_create_layer(0,0,"Cards", obj_card);
-	card.sprite= prototype.sprite;
 	card.obj.sprite_index=card.sprite;
-	card._name= prototype._name;
-	card.damage= prototype.damage;
-	card.type= prototype.type;
 	return card;
 }
