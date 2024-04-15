@@ -42,6 +42,8 @@ if (place_meeting(x, y + vsp, obj_ground))
 y += vsp;
 
 //shoot card
+
+
 if mouse_check_button_pressed(1)
 {
 	if (interval_countdown >= interval)
@@ -56,7 +58,13 @@ if mouse_check_button_pressed(1)
 		//cards: damage, type
 		var i=0;
 		instantiateBullet(cards.list[i]);
+		if (cards.list[i].type == 3)//3 is fast
+		{
+			fast_effect_countdown = fast_effect_duration;
+			interval = interval_fast;
+		}
 		for(var i=1;i<cards.index;++i){
+			if (cards.list[i].type == 3)//3 is fast
 			addBullet(cards.list[i]);
 			show_debug_message(cards.list[i]._name);
 		}
@@ -64,6 +72,14 @@ if mouse_check_button_pressed(1)
 	}
 }
 
+if (fast_effect_countdown > 0)
+{
+	fast_effect_countdown--;
+	if (fast_effect_countdown == 0)
+	{
+		interval = interval_normal;
+	}
+}
 interval_countdown ++;
 
 if(ds_queue_size(bulletQueue)>0){

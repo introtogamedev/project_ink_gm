@@ -11,8 +11,13 @@ invincible = false;
 invincible_timer = 0;
 invincible_time = 20;
 
-interval = 30;
+interval_fast = 10;
+interval_normal = 30;
+interval = interval_normal;
 interval_countdown = 0;
+
+fast_effect_duration = 60;
+fast_effect_countdown = 0;
 
 player_health = 30;
 
