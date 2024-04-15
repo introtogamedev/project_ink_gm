@@ -125,6 +125,7 @@ switch(current_state)
 		break;
 }
 
+health_bar.setPosition(x, y - 16);
 
 if(current_state == ENEMY_STATES.CHASE)
 {
@@ -137,5 +138,6 @@ else
 
 if(hp <= 0)
 {
+	instance_destroy(health_bar);
 	instance_destroy();
 }
