@@ -55,9 +55,13 @@ cell_size = 64;
 detect_dist = cell_size * 6;
 raycast_test = noone;
 
+max_hp = 10;
 hp = 10;
 
 function lose_hp(_hp)
 {
 	hp -= _hp;
 }
+
+health_bar = instance_create_layer(x, y, "Instances", obj_health_bar);
+health_bar.initializeHealthBar(self, max_hp);
