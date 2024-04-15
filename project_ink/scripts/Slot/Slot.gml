@@ -17,3 +17,13 @@ function makeEmptyCard(){
 	card.type=-1;
 	return card;
 }
+function makeCardFromCollection(prototype){
+	var card={};
+	card.obj= instance_create_layer(0,0,"Cards", obj_card);
+	card.sprite= prototype.sprite;
+	card.obj.sprite_index=card.sprite;
+	card._name= prototype._name;
+	card.damage= prototype.damage;
+	card.type= prototype.type;
+	return card;
+}
