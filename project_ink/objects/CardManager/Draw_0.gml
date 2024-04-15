@@ -1,5 +1,5 @@
 
-var sx=slot_x, sy=slot_y;
+var sx=slot_x+obj_camera.x, sy=slot_y+obj_camera.y;
 draw_set_color(c_aqua);
 for(var i=0;i<5;++i){
 	if(slot_start_index==i)
