@@ -1,7 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+middlex=700;
+topy=50;
+spacingx=10;
+width=124;
+height=182;
+card_x=middlex-(width>>1)-width-spacingx;
+card_y=topy+300;
 
 
 cards=array_create(3);
