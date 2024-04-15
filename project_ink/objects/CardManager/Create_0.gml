@@ -22,95 +22,66 @@ for(var i=0;i<slot_count;++i){
 	slots[i]=new Slot(i);
 }
 
-//card manager
-cards=array_create(CARDLEN);
-cards[0]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
+CARDCNT=7;
+card_collection=array_create(CARDCNT);
+card_collection[0]={
 	sprite: spr_card1,
 	_name: "普攻",
 	damage: 1,
 	type: 1
 };
-cards[1]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
-	sprite: spr_card1,
-	_name: "普攻",
-	damage: 1,
-	type: 1
-};
-cards[2]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
-	sprite: spr_card1,
-	_name: "普攻",
-	damage: 1,
-	type: 1
-};
-cards[3]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
-	sprite: spr_card1,
-	_name: "普攻",
-	damage: 1,
-	type: 1
-};
-cards[4]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
-	sprite: spr_card1,
-	_name: "普攻",
-	damage: 1,
-	type: 1
-};
-cards[5]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
+card_collection[1]={
 	sprite: spr_card2,
 	_name: "重击",
 	damage: 2,
 	type: 2
 }
-cards[6]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
-	sprite: spr_card2,
-	_name: "重击",
-	damage: 2,
-	type: 2
-}
-cards[7]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
+card_collection[2]={
 	sprite: spr_card3,
 	_name: "迅势",
 	damage: 0,
 	type: 3
 }
-cards[8]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
+card_collection[3]={
 	sprite: spr_card4,
 	_name: "凝霜",
 	damage: 0,
 	type: 4
 }
-cards[9]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
+card_collection[4]={
 	sprite: spr_card5,
 	_name: "破阵",
 	damage: 1,
 	aoe: 1,
 	type: 5
 }
-cards[10]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
+card_collection[5]={
 	sprite: spr_card6,
 	_name: "疾风",
 	damage: 3,
 	type: 6
 }
-cards[11]={
-	obj: instance_create_layer(0,0,"Cards", obj_card),
+card_collection[6]={
 	sprite: spr_card7,
 	_name: "连附",
 	damage: 0,
 	type: 7
 }
+//card manager
+cards=array_create(CARDLEN);
+cards[0]=makeCardFromCollection(card_collection[0]);
+cards[1]=makeCardFromCollection(card_collection[0]);
+cards[2]=makeCardFromCollection(card_collection[0]);
+cards[3]=makeCardFromCollection(card_collection[0]);
+cards[4]=makeCardFromCollection(card_collection[0]);
+cards[5]=makeCardFromCollection(card_collection[1]);
+cards[6]=makeCardFromCollection(card_collection[1]);
+cards[7]=makeCardFromCollection(card_collection[2]);
+cards[8]=makeCardFromCollection(card_collection[3]);
+cards[9]=makeCardFromCollection(card_collection[4]);
+cards[10]=makeCardFromCollection(card_collection[5]);
+cards[11]=makeCardFromCollection(card_collection[6]);
 for(var i=0;i<CARDLEN;++i){
-	cards[i].obj.sprite_index=cards[i].sprite;
 	cards[i].obj.image_xscale=(slot_width-(slot_padding<<1))/cards[i].obj.sprite_width;
 	cards[i].obj.image_yscale=(slot_height-(slot_padding<<1))/cards[i].obj.sprite_height;
 	cards[i].obj.visible=false;
