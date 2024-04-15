@@ -3,11 +3,11 @@
 
 middlex=700;
 topy=50;
-spacingx=10;
+spacingx=30;
 width=124;
 height=182;
 card_x=middlex-(width>>1)-width-spacingx;
-card_y=topy+300;
+card_y=topy+250;
 
 
 cards=array_create(3);
