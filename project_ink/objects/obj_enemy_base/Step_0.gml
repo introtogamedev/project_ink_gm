@@ -138,12 +138,8 @@ switch(current_state)
 				else
 				{
 					var _deg = point_direction(x, y, obj_player.x, obj_player.y);
-					show_debug_message(_deg);
-					//create
-					card=makeEmptyCard();
-					card.damage=4;
-					//
-					obj_player.instantiate(card)
+					
+					createBullet(card, _deg);
 				}
 			}
 			else if(inner_state == 2)

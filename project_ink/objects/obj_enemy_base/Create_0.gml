@@ -67,3 +67,7 @@ function lose_hp(_hp)
 
 health_bar = instance_create_layer(x, y, "Instances", obj_health_bar);
 health_bar.initializeHealthBar(self, max_hp);
+
+card = makeEmptyCard();
+card.damage = 2;
+card.type = -1;
