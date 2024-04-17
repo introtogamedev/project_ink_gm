@@ -2,18 +2,26 @@ if (place_meeting(x,y,obj_ground))
 {
 	instance_destroy();
 }
+if(card.type>=0){// hit enemy
+	var _inst = instance_place(x, y, obj_enemy_base)
 
-if (place_meeting(x,y,obj_enemy_base))
-{
-	visible = false;
-}
+	if(_inst)
+	{
+		visible=false;
+		_inst.lose_hp(card.damage);
+		_inst.health_bar.setHp(_inst.hp);
+		onHitEnemy(_inst);
+		instance_destroy();
+	}
+} else{ // hit player
+	var _inst = instance_place(x, y, obj_player)
 
-var _inst = instance_place(x, y, obj_enemy_base)
-
-if(_inst)
-{
-	_inst.lose_hp(card.damage);
-	_inst.health_bar.setHp(_inst.hp);
-	onHitEnemy(_inst);
-	instance_destroy();
+	if(_inst)
+	{
+		visible=false;
+		_inst.lose_hp(card.damage);
+		_inst.health_bar.setHp(_inst.hp);
+		onHitEnemy(_inst);
+		instance_destroy();
+	}
 }
