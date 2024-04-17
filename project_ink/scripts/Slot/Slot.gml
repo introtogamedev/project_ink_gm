@@ -21,7 +21,8 @@ function makeCardFromCollection(prototype){
 	var card=copy_struct(prototype);
 	card.obj={
 		x:0,
-		y:0
+		y:0,
+		__x:14
 	};
 	return card;
 }

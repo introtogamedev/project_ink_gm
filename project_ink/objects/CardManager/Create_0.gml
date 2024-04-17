@@ -144,7 +144,6 @@ function distribute(){
 	for(var i=0;i<5;++i){
 		if(slots[i].isNull){
 			slots[i].card=newcards.list[cnt];
-			//slots[i].card.obj.setStayPosition(slot_x+slot_padding+i*(slot_width+slot_spacing),slot_y+slot_padding);
 			slots[i].card.obj.x=slot_x+slot_padding+i*(slot_width+slot_spacing)
 			slots[i].card.obj.y=slot_y+slot_padding;
 			slots[i].card.obj.visible=true;
@@ -217,7 +216,6 @@ function shootCard(){
 }
 
 distribute();
-
 //shoot cards
 shoot_card_index=0;
 
