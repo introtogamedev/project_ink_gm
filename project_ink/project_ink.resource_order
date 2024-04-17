@@ -32,6 +32,7 @@
     {"name":"Charles","order":2,"path":"rooms/Charles/Charles.yy",},
     {"name":"Scene_Andy","order":1,"path":"rooms/Scene_Andy/Scene_Andy.yy",},
     {"name":"Algorithms","order":1,"path":"scripts/Algorithms/Algorithms.yy",},
+    {"name":"createBullet","order":2,"path":"scripts/createBullet/createBullet.yy",},
     {"name":"anim_fall","order":18,"path":"sprites/anim_fall/anim_fall.yy",},
     {"name":"anim_idle","order":17,"path":"sprites/anim_idle/anim_idle.yy",},
     {"name":"anim_jump","order":15,"path":"sprites/anim_jump/anim_jump.yy",},
