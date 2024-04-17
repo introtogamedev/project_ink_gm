@@ -126,11 +126,10 @@ switch(current_state)
 	case ENEMY_STATES.ATTACK:
 			if(inner_state == 0)
 			{
-				
+				inner_state = 1;
 			}
 			else if(inner_state == 1)
 			{
-				
 				if(melee)
 				{
 			
@@ -140,6 +139,7 @@ switch(current_state)
 					var _deg = point_direction(x, y, obj_player.x, obj_player.y);
 					
 					createBullet(card, _deg);
+					show_debug_message("bullet created");
 				}
 			}
 			else if(inner_state == 2)
@@ -169,3 +169,4 @@ if(hp <= 0)
 	instance_destroy();
 }
 
+show_debug_message(current_state);

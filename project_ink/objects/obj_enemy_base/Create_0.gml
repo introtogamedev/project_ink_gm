@@ -52,9 +52,9 @@ function flip_to_target(_target)
 
 wall = obj_ground;
 cell_size = 64;
-detect_dist = cell_size * 6;
+detect_dist = cell_size * 8;
 raycast_test = noone;
-attack_dist = cell_size * 6;
+attack_dist = cell_size * 2;
 melee = false;
 
 max_hp = 10;
