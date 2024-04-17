@@ -27,15 +27,28 @@ bulletTimer=10;
 bulletCounter=0;
 bulletQueue = ds_queue_create();
 
+//health bar
+max_hp=30;
+hp=30;
+show_debug_message("create health bar");
+health_bar = instance_create_layer(x, y, "Instances", obj_health_bar);
+health_bar.initializeHealthBar(self, max_hp);
+health_bar.setWidth(400);
+health_bar.setHeight(100);
+health_bar.offsety=0;
+
 function addBullet(_card){
 	show_debug_message("enqueue");
     ds_queue_enqueue(bulletQueue, _card);
 }
 function instantiateBullet(_card){
-	
 	card_direction = instance_create_layer(x, y-120, "Instances", obj_andytesting_card);
 	card_direction.speed = 30;
 	card_direction.direction = point_direction(x,y-100,mouse_x,mouse_y);
 	card_direction.image_angle = card_direction.direction;
 	card_direction.card=_card;
+}
+function lose_hp(h){
+	hp-=h;
+	health_bar.setHp(hp);
 }

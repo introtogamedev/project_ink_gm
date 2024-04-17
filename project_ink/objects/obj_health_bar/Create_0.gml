@@ -45,4 +45,5 @@ function initializeHealthBar(followingObject, max_hp){
 	maxHp=max_hp;
 	hp=maxHp;
 	hpPercentage=hp/maxHp;
+	target=followingObject;
 }
