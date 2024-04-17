@@ -56,6 +56,7 @@ detect_dist = cell_size * 8;
 raycast_test = noone;
 attack_dist = cell_size * 2;
 melee = false;
+attack_interval = 1;
 
 max_hp = 10;
 hp = 10;

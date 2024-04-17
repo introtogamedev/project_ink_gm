@@ -127,6 +127,7 @@ switch(current_state)
 			if(inner_state == 0)
 			{
 				inner_state = 1;
+				timer = 0;
 			}
 			else if(inner_state == 1)
 			{
@@ -136,10 +137,19 @@ switch(current_state)
 				}
 				else
 				{
-					var _deg = point_direction(x, y, obj_player.x, obj_player.y);
+					if(timer >= attack_interval)
+					{
+						var _deg = point_direction(x, y, obj_player.x, obj_player.y);
 					
-					createBullet(card, _deg);
-					show_debug_message("bullet created");
+						createBullet(card, _deg);
+						show_debug_message("bullet created");
+						timer = 0;
+					}
+					else
+					{
+						timer += delta_time/1000000;
+					}
+					
 				}
 			}
 			else if(inner_state == 2)
