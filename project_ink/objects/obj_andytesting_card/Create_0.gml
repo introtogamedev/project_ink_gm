@@ -10,6 +10,4 @@ function onHitEnemy(enemy){
 		aoe.card=card; /////////    aoe.damage=card.aoe;
 		break;
 	}
-	
-	
 }
