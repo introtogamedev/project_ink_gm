@@ -8,6 +8,14 @@ width=124;
 height=182;
 card_x=middlex-(width>>1)-width-spacingx;
 card_y=topy+250;
+card_y_bottom=card_y+height;
+
+card_xes=array_create(3);
+card_xes[0]=card_x;
+card_xes[1]=card_x+width+spacingx;
+card_xes[2]=card_xes[1]+width+spacingx;
+
+isMouseHover=array_create(3,false);
 
 
 cards=array_create(3);

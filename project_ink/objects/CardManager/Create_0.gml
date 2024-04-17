@@ -82,8 +82,8 @@ cards[9]=makeCardFromCollection(card_collection[4]);
 cards[10]=makeCardFromCollection(card_collection[5]);
 cards[11]=makeCardFromCollection(card_collection[6]);
 for(var i=0;i<CARDLEN;++i){
-	cards[i].obj.image_xscale=(slot_width-(slot_padding<<1))/cards[i].obj.sprite_width;
-	cards[i].obj.image_yscale=(slot_height-(slot_padding<<1))/cards[i].obj.sprite_height;
+	cards[i].obj.width=(slot_width-(slot_padding<<1));
+	cards[i].obj.height=(slot_height-(slot_padding<<1));
 	cards[i].obj.visible=false;
 }
 
@@ -144,7 +144,9 @@ function distribute(){
 	for(var i=0;i<5;++i){
 		if(slots[i].isNull){
 			slots[i].card=newcards.list[cnt];
-			slots[i].card.obj.setStayPosition(slot_x+slot_padding+i*(slot_width+slot_spacing),slot_y+slot_padding);
+			//slots[i].card.obj.setStayPosition(slot_x+slot_padding+i*(slot_width+slot_spacing),slot_y+slot_padding);
+			slots[i].card.obj.x=slot_x+slot_padding+i*(slot_width+slot_spacing)
+			slots[i].card.obj.y=slot_y+slot_padding;
 			slots[i].card.obj.visible=true;
 			slots[i].isNull=false;
 			++cnt;
