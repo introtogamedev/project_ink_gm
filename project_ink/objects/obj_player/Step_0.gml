@@ -4,7 +4,6 @@ if (keyboard_check(ord("A")) && !place_meeting(x-10,y,obj_ground))
 	image_x = -1;
 	sprite_index = anim_run;
 	x -= xSpeed;
-	obj_camera.x -= xSpeed;
 	//obj_camera.x -= xSpeed;
 	image_xscale = -3;
 }
@@ -14,7 +13,6 @@ if (keyboard_check(ord("D")) && !place_meeting(x+10,y,obj_ground))
 	image_x = 1;
 	sprite_index = anim_run;
 	x += xSpeed;
-	obj_camera.x += xSpeed;
 	//obj_camera.x += xSpeed;
 	image_xscale = 3;
 }
