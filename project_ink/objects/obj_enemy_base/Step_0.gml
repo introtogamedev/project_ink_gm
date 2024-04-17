@@ -139,7 +139,7 @@ switch(current_state)
 				{
 					if(timer >= attack_interval)
 					{
-						var _deg = point_direction(x, y, obj_player.x, obj_player.y);
+						var _deg = point_direction(x, y, obj_player.x, obj_player.y -120);
 					
 						createBullet(card, _deg);
 						show_debug_message("bullet created");
