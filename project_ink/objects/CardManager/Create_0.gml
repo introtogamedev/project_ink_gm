@@ -5,8 +5,8 @@
 #region slot
 //----drawing params-----
 slot_count=5;
-slot_x=90;
-slot_y=527;
+slot_x=50;
+slot_y=570;
 slot_width=124;
 slot_height=182;
 slot_spacing=25;
