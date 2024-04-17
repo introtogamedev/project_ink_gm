@@ -10,5 +10,5 @@ var target_x = player_x;
 var target_y = player_y;
 
 // Move the camera towards the target position
-x += (target_x - x -300) / cam_speed;
-y += (target_y - y -550) / cam_speed;
+x += (target_x - x -600) / cam_speed;
+y += (target_y - y -500) / cam_speed;
