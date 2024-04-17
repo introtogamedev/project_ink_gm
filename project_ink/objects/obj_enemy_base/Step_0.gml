@@ -130,7 +130,7 @@ switch(current_state)
 			}
 			else if(inner_state == 1)
 			{
-				image_blend = make_color_hsv(255, 255, 100);
+				
 				if(melee)
 				{
 			

@@ -51,8 +51,8 @@
     {"name":"inst_2045B7A5","path":"rooms/Scene_Andy/Scene_Andy.yy",},
     {"name":"inst_4B8DCC1F","path":"rooms/Scene_Andy/Scene_Andy.yy",},
     {"name":"inst_29F3413C","path":"rooms/Scene_Andy/Scene_Andy.yy",},
-    {"name":"inst_1B70D3DE","path":"rooms/Scene_Andy/Scene_Andy.yy",},
     {"name":"inst_595DCA95","path":"rooms/Scene_Andy/Scene_Andy.yy",},
+    {"name":"inst_1B70D3DE","path":"rooms/Scene_Andy/Scene_Andy.yy",},
   ],
   "isDnd":false,
   "layers":[
