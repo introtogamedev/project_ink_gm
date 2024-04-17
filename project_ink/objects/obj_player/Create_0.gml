@@ -33,9 +33,9 @@ hp=30;
 show_debug_message("create health bar");
 health_bar = instance_create_layer(x, y, "Instances", obj_health_bar);
 health_bar.initializeHealthBar(self, max_hp);
-health_bar.setWidth(400);
-health_bar.setHeight(100);
-health_bar.offsety=0;
+health_bar.setWidth(100);
+health_bar.setHeight(10);
+health_bar.offsety=-185;
 
 function addBullet(_card){
 	show_debug_message("enqueue");

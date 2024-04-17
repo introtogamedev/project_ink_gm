@@ -1,4 +1,3 @@
-health_bar.setPosition(x,y);
 //player movement
 if (keyboard_check(ord("A")) && !place_meeting(x-10,y,obj_ground))
 {

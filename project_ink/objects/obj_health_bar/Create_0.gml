@@ -26,10 +26,12 @@ function setPosition(_x, _y){
 	bottom=top+height;
 }
 function setWidth(w){
+	width=w;
 	left=x-(width>>1);
 	right=left+width;
 }
 function setHeight(h){
+	height=h;
 	top=y-(height>>1);
 	bottom=top+height;
 }
