@@ -54,6 +54,8 @@ wall = obj_ground;
 cell_size = 64;
 detect_dist = cell_size * 6;
 raycast_test = noone;
+attack_dist = cell_size * 6;
+melee = false;
 
 max_hp = 10;
 hp = 10;

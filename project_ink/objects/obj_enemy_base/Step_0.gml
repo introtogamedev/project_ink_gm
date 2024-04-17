@@ -88,13 +88,16 @@ switch(current_state)
 			}
 			else if(inner_state == 1)
 			{
-				if(_dist > cell_size * 1.5)
+				if(_dist > attack_dist)
 				{
 					flip_to_target(obj_player);
 					vel_x = image_xscale * chase_spd;
 				}
 				else
 				{
+					change_state(ENEMY_STATES.ATTACK);
+					current_state = next_state;
+					inner_state = 0;
 					vel_x = 0;
 				}
 			
@@ -121,7 +124,35 @@ switch(current_state)
 		break;
 		
 	case ENEMY_STATES.ATTACK:
-	
+			if(inner_state == 0)
+			{
+				
+			}
+			else if(inner_state == 1)
+			{
+				image_blend = make_color_hsv(255, 255, 100);
+				if(melee)
+				{
+			
+				}
+				else
+				{
+					var _deg = point_direction(x, y, obj_player.x, obj_player.y);
+					show_debug_message(_deg);
+					//create
+					card=makeEmptyCard();
+					card.damage=4;
+					//
+					obj_player.instantiate(card)
+				}
+			}
+			else if(inner_state == 2)
+			{
+				change_state(ENEMY_STATES.PATROL);
+				current_state = next_state;
+				inner_state = 0;
+			}
+		
 		break;
 }
 
@@ -141,3 +172,4 @@ if(hp <= 0)
 	instance_destroy(health_bar);
 	instance_destroy();
 }
+
