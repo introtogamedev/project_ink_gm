@@ -17,6 +17,8 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"Helvetica_small","order":1,"path":"fonts/Helvetica_small/Helvetica_small.yy",},
+    {"name":"GameOverSceneManager","order":14,"path":"objects/GameOverSceneManager/GameOverSceneManager.yy",},
     {"name":"obj_andytesting_card","order":6,"path":"objects/obj_andytesting_card/obj_andytesting_card.yy",},
     {"name":"obj_camera","order":12,"path":"objects/obj_camera/obj_camera.yy",},
     {"name":"obj_card","order":8,"path":"objects/obj_card/obj_card.yy",},
@@ -31,6 +33,7 @@
     {"name":"RoomManager","order":3,"path":"objects/RoomManager/RoomManager.yy",},
     {"name":"Charles","order":2,"path":"rooms/Charles/Charles.yy",},
     {"name":"Scene_Andy","order":1,"path":"rooms/Scene_Andy/Scene_Andy.yy",},
+    {"name":"Scene_GameOver","order":3,"path":"rooms/Scene_GameOver/Scene_GameOver.yy",},
     {"name":"Algorithms","order":1,"path":"scripts/Algorithms/Algorithms.yy",},
     {"name":"createBullet","order":2,"path":"scripts/createBullet/createBullet.yy",},
     {"name":"anim_fall","order":18,"path":"sprites/anim_fall/anim_fall.yy",},

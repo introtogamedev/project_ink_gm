@@ -32,7 +32,6 @@ bulletQueue = ds_queue_create();
 //health bar
 max_hp=30;
 hp=30;
-show_debug_message("create health bar");
 health_bar = instance_create_layer(x, y, "Instances", obj_health_bar);
 health_bar.initializeHealthBar(self, max_hp);
 health_bar.setWidth(100);
@@ -40,7 +39,6 @@ health_bar.setHeight(10);
 health_bar.offsety=-185;
 
 function addBullet(_card){
-	show_debug_message("enqueue");
     ds_queue_enqueue(bulletQueue, _card);
 }
 function instantiateBullet(_card){
@@ -52,5 +50,8 @@ function instantiateBullet(_card){
 }
 function lose_hp(h){
 	hp-=h;
+	if(hp<0){
+		room_goto(Scene_GameOver);
+	}
 	health_bar.setHp(hp);
 }

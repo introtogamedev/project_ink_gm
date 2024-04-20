@@ -1,6 +1,4 @@
 /// @description Insert description here
 // You can write your code in this editor
-
-if(target){
-	setPosition(target.x+offsetx, target.y+offsety);
-}
+text_x=683;
+text_y=384;

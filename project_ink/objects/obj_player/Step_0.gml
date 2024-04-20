@@ -83,7 +83,6 @@ if mouse_check_button_pressed(1)
 		for(var i=1;i<cards.index;++i){
 			if (cards.list[i].type == 3)//3 is fast
 			addBullet(cards.list[i]);
-			show_debug_message(cards.list[i]._name);
 		}
 		
 	}
