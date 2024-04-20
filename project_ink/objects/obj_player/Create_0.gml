@@ -1,13 +1,12 @@
+xSpeed = 12;
 vx=0;
 vy=0;
-//------------
-xSpeed = 12;
-vsp = 0;
 
 grav = 2;
 
 jump_speed = 40;
-jump_timer = 0;
+jump_timer_reset=2;
+jump_timer = jump_timer_reset;
 jump_duration = 15;
 
 invincible = false;
