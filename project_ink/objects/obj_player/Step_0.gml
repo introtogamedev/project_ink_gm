@@ -1,3 +1,7 @@
+//restart
+if(keyboard_check_pressed(ord("R"))){
+	room_restart();
+}
 //player movement
 if(abs(vx)>1)
 	vx=lerp(vx,0,0.5);
@@ -11,7 +15,7 @@ if (keyboard_check(ord("A")))
 	//obj_camera.x -= xSpeed;
 	image_xscale = -3;
 }
-if (keyboard_check(ord("D")))
+else if (keyboard_check(ord("D")))
 {
 	image_x = 1;
 	sprite_index = anim_run;
