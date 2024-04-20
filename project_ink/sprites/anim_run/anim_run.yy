@@ -1,10 +1,10 @@
 {
   "$GMSprite":"",
   "%Name":"anim_run",
-  "bboxMode":0,
+  "bboxMode":2,
   "bbox_bottom":63,
-  "bbox_left":12,
-  "bbox_right":49,
+  "bbox_left":13,
+  "bbox_right":51,
   "bbox_top":8,
   "collisionKind":1,
   "collisionTolerance":0,
