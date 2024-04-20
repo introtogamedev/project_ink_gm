@@ -139,10 +139,9 @@ switch(current_state)
 				{
 					if(timer >= attack_interval)
 					{
-						var _deg = point_direction(x, y, obj_player.x, obj_player.y);
+						var _deg = point_direction(x, y, obj_player.x, obj_player.y-60);
 					
 						createBullet(card, _deg);
-						show_debug_message("bullet created");
 						timer = 0;
 					}
 					else
@@ -178,5 +177,3 @@ if(hp <= 0)
 	instance_destroy(health_bar);
 	instance_destroy();
 }
-
-show_debug_message(current_state);
