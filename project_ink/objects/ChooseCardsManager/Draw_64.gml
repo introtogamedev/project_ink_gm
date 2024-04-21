@@ -7,6 +7,7 @@ draw_set_color(c_white);
 draw_set_font(Helvetica_small);
 draw_text(header_x, header_y, "Choose your cards");
 draw_rectangle(avail_x,avail_y,avail_w+avail_x,avail_h+avail_y,true);
+draw_text(select_x, header_y, "Selected cards ("+string(card_count)+"/"+string(global.max_card_count)+")");
 draw_rectangle(select_x,select_y,avail_w+select_x,avail_h+select_y,true);
 
 //draw available cards
@@ -18,8 +19,8 @@ for(var i=0;i<global.card_collection_count;++i){
 }
 //draw selected cards
 for(var i=0;i<global.card_collection_count;++i){
-	draw_sprite_stretched(global.card_collection[i].sprite, -1, selected_cards[i].x,selected_cards[i].y, card_width, card_height);
-	draw_text(selected_cards[i].x+(card_width>>1),selected_cards[i].y+card_height, string(selected_cards[i].count));
+	draw_sprite_stretched(global.card_collection[i].sprite, -1, global.selected_cards[i].x,global.selected_cards[i].y, card_width, card_height);
+	draw_text(global.selected_cards[i].x+(card_width>>1),global.selected_cards[i].y+card_height, string(global.selected_cards[i].count));
 }
 
 //draw description
