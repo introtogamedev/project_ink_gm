@@ -17,6 +17,13 @@ interval_fast = 10;
 interval_normal = 30;
 interval = interval_normal;
 interval_countdown = 0;
+interval_bar = instance_create_layer(x, y, "Instances", obj_health_bar);
+interval_bar.setWidth(100);
+interval_bar.setHeight(10);
+interval_bar.initializeHealthBar(self, interval_normal);
+interval_bar.offsety=-170;
+interval_bar.frontColor=c_aqua;
+interval_bar.backColor=c_grey;
 
 fast_effect_duration = 60;
 fast_effect_countdown = 0;
@@ -55,3 +62,6 @@ function lose_hp(h){
 	}
 	health_bar.setHp(hp);
 }
+
+//shoot
+canShoot=true;

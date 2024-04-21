@@ -9,7 +9,7 @@ for(var i=0;i<5;++i){
 	draw_rectangle(sx,sy,sx+slot_width,sy+slot_height,false);
 	//draw cards
 	if(!slots[i].isNull and slots[i].card.obj.visible){
-		draw_sprite_stretched(slots[i].card.sprite,-1,slots[i].card.obj.x, slots[i].card.obj.y, slots[i].card.obj.width, slots[i].card.obj.height);
+		draw_sprite_stretched(slots[i].card.sprite,-1,slots[i].card.obj.x, slots[i].card.obj.y, slot_width-(slot_padding<<1), slot_height-(slot_padding<<1));
 	}
 	
 	if(slots[i].freeze>0){

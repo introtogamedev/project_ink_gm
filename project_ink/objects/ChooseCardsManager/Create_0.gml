@@ -1,3 +1,6 @@
+//draw settings
+draw_set_valign(fa_top);
+
 #region card definition
 global.card_collection_count=7;
 global.card_collection=array_create(global.card_collection_count);
@@ -45,13 +48,13 @@ global.card_collection[6]={
 	type: 7
 }
 descriptions=array_create(global.card_collection_count);
-descriptions[0]="Attack\n\nDamage: 1";
-descriptions[1]="Critical Hit\n\nDamage: 2";
+descriptions[0]="Attack\n\nDamage: 1\nNo Special Effects";
+descriptions[1]="Critical Hit\n\nDamage: 2\nNo Special Effects";
 descriptions[2]="Fast\n\nDamage: 0\nSpecial Effects: Increases your attack speed, but empty your next card slot for one round";
 descriptions[3]="Freeze\n\nDamage: 1\nSpecial Effects: Freezes this card slot for 2 rounds (you'll skip this card slot when you shoot)";
 descriptions[4]="Explosion\n\nDamage: 1\nSpecial Effects: Explodes when hit an enemy. Deals 1 point damage to each enemies inside it explosion.";
-descriptions[5]="Hurricane\n\nDamage: 1\nSpecial Effects: I don't know what it does";
-descriptions[6]="Connect\n\nDamage: 1\nSpecial Effects: Shoots this card and the card on the next slot in one shot";
+descriptions[5]="Hurricane\n\nDamage: 1\nSpecial Effects: Don't know what it does";
+descriptions[6]="Connect\n\nDamage: 1\nSpecial Effects: Shoots this card and the card on the next slot in one shot. But you lose this card from your hand once you shoot it";
 #endregion
 available_cards=array_create(global.card_collection_count);
 global.selected_cards=array_create(global.card_collection_count);

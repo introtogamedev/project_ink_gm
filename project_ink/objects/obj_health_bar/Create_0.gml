@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+frontColor=c_green;
+backColor=c_red;
+
 width=40;
 height=5;
 

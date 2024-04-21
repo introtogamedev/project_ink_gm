@@ -44,11 +44,6 @@ cards[9]=makeCardFromCollection(card_collection[4]);
 cards[10]=makeCardFromCollection(card_collection[5]);
 cards[11]=makeCardFromCollection(card_collection[6]);
 */
-for(var i=0;i<CARDLEN;++i){
-	cards[i].obj.width=(slot_width-(slot_padding<<1));
-	cards[i].obj.height=(slot_height-(slot_padding<<1));
-	cards[i].obj.visible=false;
-}
 
 card_pool={
 	length: CARDLEN,
@@ -86,6 +81,9 @@ card_pool={
 			ds_queue_enqueue(shuffledCards,tmp);
 		}
 		discardedCards.clear();
+	},
+	addCards: function(prototype){
+		returnedCards.add(makeCardFromCollection(prototype));
 	},
 	init: function(cards){
 		array_copy(originalCards, 0,cards, 0, length);

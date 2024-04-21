@@ -1,6 +1,6 @@
 //restart
 if(keyboard_check_pressed(ord("R"))){
-	room_restart();
+	room_goto(ChooseCards);
 }
 //player movement
 if(abs(vx)>1)
@@ -49,6 +49,11 @@ for(var i=abs(vy);i>-1;--i){
 		break;
 	}
 }
+//if fall off the screen, die
+if(y>768){
+	lose_hp(10000);
+}
+
 //Horizontal collision
 for(var i=abs(vx);i>-1;--i){
 	x+=sign(vx);
@@ -59,15 +64,11 @@ for(var i=abs(vx);i>-1;--i){
 	}
 }
 
-
-// Update position
-
 //shoot card
-
 
 if mouse_check_button_pressed(1)
 {
-	if (interval_countdown >= interval)
+	if (interval_countdown >= interval and canShoot)
 	{
 		//
 		
@@ -83,6 +84,7 @@ if mouse_check_button_pressed(1)
 		{
 			fast_effect_countdown = fast_effect_duration;
 			interval = interval_fast;
+			interval_bar.setMaxHp(interval_fast);
 		}
 		for(var i=1;i<cards.index;++i){
 			if (cards.list[i].type == 3)//3 is fast
@@ -98,9 +100,14 @@ if (fast_effect_countdown > 0)
 	if (fast_effect_countdown == 0)
 	{
 		interval = interval_normal;
+		interval_bar.setMaxHp(interval_normal);
 	}
 }
-interval_countdown ++;
+if(interval_countdown<interval){
+	interval_countdown++;
+	interval_bar.setHp(interval_countdown);
+}
+
 
 if(ds_queue_size(bulletQueue)>0){
     ++bulletCounter;
