@@ -161,13 +161,13 @@ function shootCard(){
 	++slot_start_index;
 	if(slot_start_index>=slot_count){
 		slot_start_index=0;
-		distribute();
+		alarm[0]=30;
 	}
 	while(slots[slot_start_index].freeze>0){
 		++slot_start_index;
 		if(slot_start_index>=slot_count){
 			slot_start_index=0;
-			distribute();
+			alarm[0]=30;
 		}
 	}
 	if(tmp.index==0){ //if no cards are shot
