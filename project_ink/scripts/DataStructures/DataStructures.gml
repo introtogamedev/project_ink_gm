@@ -7,6 +7,7 @@ function List(cap) constructor{
 	add=function(item){
 		if(index==capacity){
 			show_debug_message("array out of capacity");
+			++capacity;
 			return;
 		}
 		list[index++]=item;

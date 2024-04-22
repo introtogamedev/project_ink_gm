@@ -1,52 +1,74 @@
+//restart
+if(keyboard_check_pressed(ord("R"))){
+	room_goto(ChooseCards);
+}
 //player movement
-if (keyboard_check(ord("A")) && !place_meeting(x-10,y,obj_ground))
+if(abs(vx)>1)
+	vx=lerp(vx,0,0.5);
+else
+	vx=0;
+if (keyboard_check(ord("A")))
 {
 	image_x = -1;
 	sprite_index = anim_run;
-	x -= xSpeed;
+	vx=-xSpeed;
 	//obj_camera.x -= xSpeed;
 	image_xscale = -3;
 }
-
-if (keyboard_check(ord("D")) && !place_meeting(x+10,y,obj_ground))
+else if (keyboard_check(ord("D")))
 {
 	image_x = 1;
 	sprite_index = anim_run;
-	x += xSpeed;
+	vx = xSpeed;
 	//obj_camera.x += xSpeed;
 	image_xscale = 3;
 }
 
 // Jumping
-if (place_meeting(x, y + 1, obj_ground) && (keyboard_check_pressed(ord("W")) || keyboard_check(vk_space)))
+if ((keyboard_check_pressed(ord("W")) || keyboard_check_pressed(vk_space)) && jump_timer>0)
 {
 	sprite_index = anim_jump;
-    vsp = -jump_speed;
+    vy = -jump_speed;
+	--jump_timer;
 }
 
 // Gravity
-vsp += grav;
+vy += grav;
 
 // Vertical collision
-if (place_meeting(x, y + vsp, obj_ground))
-{
-    while (!place_meeting(x, y + sign(vsp), obj_ground))
-    {
-        y += sign(vsp);
-    }
-    vsp = 0;
+for(var i=abs(vy);i>-1;--i){
+	y+=sign(vy);
+	if(place_meeting(x,y+sign(vy),obj_ground)){
+		if(vy>0){
+			jump_timer=jump_timer_reset;
+			--y;
+		} else{
+			++y;
+		}
+		vy=0;
+		break;
+	}
+}
+//if fall off the screen, die
+if(y>768){
+	lose_hp(10000);
 }
 
-
-// Update position
-y += vsp;
+//Horizontal collision
+for(var i=abs(vx);i>-1;--i){
+	x+=sign(vx);
+	if(place_meeting(x+sign(vx),y,obj_ground)){
+		x-=sign(vx);
+		vx=0;
+		break;
+	}
+}
 
 //shoot card
 
-
 if mouse_check_button_pressed(1)
 {
-	if (interval_countdown >= interval)
+	if (interval_countdown >= interval and canShoot)
 	{
 		//
 		
@@ -62,11 +84,11 @@ if mouse_check_button_pressed(1)
 		{
 			fast_effect_countdown = fast_effect_duration;
 			interval = interval_fast;
+			interval_bar.setMaxHp(interval_fast);
 		}
 		for(var i=1;i<cards.index;++i){
 			if (cards.list[i].type == 3)//3 is fast
 			addBullet(cards.list[i]);
-			show_debug_message(cards.list[i]._name);
 		}
 		
 	}
@@ -78,9 +100,14 @@ if (fast_effect_countdown > 0)
 	if (fast_effect_countdown == 0)
 	{
 		interval = interval_normal;
+		interval_bar.setMaxHp(interval_normal);
 	}
 }
-interval_countdown ++;
+if(interval_countdown<interval){
+	interval_countdown++;
+	interval_bar.setHp(interval_countdown);
+}
+
 
 if(ds_queue_size(bulletQueue)>0){
     ++bulletCounter;
@@ -95,7 +122,7 @@ if (!keyboard_check(ord("A")) && !keyboard_check(ord("D")) && !keyboard_check(or
 {
     sprite_index = anim_idle;
 }
-if (vsp > 0)
+if (vy > 0)
 {
     sprite_index = anim_fall;
 }

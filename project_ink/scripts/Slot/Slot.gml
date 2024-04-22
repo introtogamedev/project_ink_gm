@@ -24,5 +24,6 @@ function makeCardFromCollection(prototype){
 		y:0,
 		__x:14
 	};
+	card.obj.visible=false;
 	return card;
 }

@@ -1,12 +1,11 @@
 /// @description Insert description here
 // You can write your code in this editor
-#macro CARDLEN 12
 
 #region slot
 //----drawing params-----
 slot_count=5;
-slot_x=90;
-slot_y=527;
+slot_x=50;
+slot_y=570;
 slot_width=124;
 slot_height=182;
 slot_spacing=25;
@@ -21,54 +20,17 @@ slots=array_create(slot_count);
 for(var i=0;i<slot_count;++i){
 	slots[i]=new Slot(i);
 }
-
-CARDCNT=7;
-card_collection=array_create(CARDCNT);
-card_collection[0]={
-	sprite: spr_card1,
-	_name: "普攻",
-	damage: 1,
-	type: 1
-};
-card_collection[1]={
-	sprite: spr_card2,
-	_name: "重击",
-	damage: 2,
-	type: 2
-}
-card_collection[2]={
-	sprite: spr_card3,
-	_name: "迅势",
-	damage: 0,
-	type: 3
-}
-card_collection[3]={
-	sprite: spr_card4,
-	_name: "凝霜",
-	damage: 0,
-	type: 4
-}
-card_collection[4]={
-	sprite: spr_card5,
-	_name: "破阵",
-	damage: 1,
-	aoe: 1,
-	type: 5
-}
-card_collection[5]={
-	sprite: spr_card6,
-	_name: "疾风",
-	damage: 3,
-	type: 6
-}
-card_collection[6]={
-	sprite: spr_card7,
-	_name: "连附",
-	damage: 0,
-	type: 7
-}
 //card manager
+CARDLEN=global.max_card_count;
 cards=array_create(CARDLEN);
+for(var i=0,j=0;i<CARDLEN;++i){
+	while(global.selected_cards[j].count==0){
+		++j;
+	}
+	cards[i]=makeCardFromCollection(global.card_collection[j]);
+	--global.selected_cards[j].count;
+}
+/*
 cards[0]=makeCardFromCollection(card_collection[0]);
 cards[1]=makeCardFromCollection(card_collection[0]);
 cards[2]=makeCardFromCollection(card_collection[0]);
@@ -81,11 +43,7 @@ cards[8]=makeCardFromCollection(card_collection[3]);
 cards[9]=makeCardFromCollection(card_collection[4]);
 cards[10]=makeCardFromCollection(card_collection[5]);
 cards[11]=makeCardFromCollection(card_collection[6]);
-for(var i=0;i<CARDLEN;++i){
-	cards[i].obj.width=(slot_width-(slot_padding<<1));
-	cards[i].obj.height=(slot_height-(slot_padding<<1));
-	cards[i].obj.visible=false;
-}
+*/
 
 card_pool={
 	length: CARDLEN,
@@ -124,10 +82,13 @@ card_pool={
 		}
 		discardedCards.clear();
 	},
+	addCards: function(prototype){
+		returnedCards.add(makeCardFromCollection(prototype));
+	},
 	init: function(cards){
-		array_copy(originalCards, 0,cards, 0, CARDLEN);
-		array_copy(discardedCards.list, 0,cards, 0, CARDLEN);
-		discardedCards.index=CARDLEN;
+		array_copy(originalCards, 0,cards, 0, length);
+		array_copy(discardedCards.list, 0,cards, 0, length);
+		discardedCards.index=length;
 	}
 };
 card_pool.init(cards);
@@ -200,13 +161,13 @@ function shootCard(){
 	++slot_start_index;
 	if(slot_start_index>=slot_count){
 		slot_start_index=0;
-		distribute();
+		alarm[0]=30;
 	}
 	while(slots[slot_start_index].freeze>0){
 		++slot_start_index;
 		if(slot_start_index>=slot_count){
 			slot_start_index=0;
-			distribute();
+			alarm[0]=30;
 		}
 	}
 	if(tmp.index==0){ //if no cards are shot
