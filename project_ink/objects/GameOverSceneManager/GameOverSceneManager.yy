@@ -10,8 +10,8 @@
   "name":"GameOverSceneManager",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"project_ink",
+    "path":"project_ink.yyp",
   },
   "parentObjectId":null,
   "persistent":false,
