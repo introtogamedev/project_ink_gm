@@ -4,7 +4,7 @@ vy=0;
 
 //gravity
 grav_reset=2;
-grav_light=1;
+grav_light=0.85;
 grav = 2;
 
 //jump
