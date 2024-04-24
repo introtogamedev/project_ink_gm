@@ -186,4 +186,7 @@ if(hp <= 0)
 	instance_destroy();
 }
 
-show_debug_message(sign(image_xscale) == sign(obj_player.image_xscale));
+raycast = collision_line(x, y, x + image_xscale * ray_current_dist, y, obj_player, false, true);
+
+
+
