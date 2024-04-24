@@ -185,5 +185,3 @@ if(hp <= 0)
 	instance_destroy(health_bar);
 	instance_destroy();
 }
-
-show_debug_message(sign(image_xscale) == sign(obj_player.image_xscale));

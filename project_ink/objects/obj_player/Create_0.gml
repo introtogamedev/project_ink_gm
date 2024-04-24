@@ -54,9 +54,14 @@ function addBullet(_card){
 }
 function instantiateBullet(_card){
 	card_direction = instance_create_layer(x, y-120, "Instances", obj_andytesting_card);
-	card_direction.speed = 30;
+	//card_direction.speed = 30;
 	card_direction.direction = point_direction(x,y-100,mouse_x,mouse_y);
 	card_direction.image_angle = card_direction.direction;
+	if(_card.sprite!=pointer_null){
+		//card_direction.sprite_index=_card.sprite;
+		card_direction.image_xscale=0.5;
+		card_direction.image_yscale=0.5;
+	}
 	card_direction.card=_card;
 }
 function lose_hp(h){
