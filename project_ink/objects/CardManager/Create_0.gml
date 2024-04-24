@@ -3,9 +3,12 @@
 
 #region slot
 //----drawing params-----
+slot_y_normal=665;
+slot_y_up=570;
+
 slot_count=5;
 slot_x=50;
-slot_y=570;
+slot_y=slot_y_normal;
 slot_width=124;
 slot_height=182;
 slot_spacing=25;
@@ -174,6 +177,14 @@ function shootCard(){
 		tmp.add(makeEmptyCard());
 	}
 	return tmp;
+}
+function updateCardPosInSlots(){
+	for(var i=0;i<5;++i){
+		if(!slots[i].isNull){
+			slots[i].card.obj.x=slot_x+slot_padding+i*(slot_width+slot_spacing)
+			slots[i].card.obj.y=slot_y+slot_padding;
+		}
+	}
 }
 
 distribute();

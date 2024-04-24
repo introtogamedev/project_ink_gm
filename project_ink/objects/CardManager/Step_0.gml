@@ -4,4 +4,12 @@
 if(keyboard_check_pressed(ord("F"))){
 	shootCard();
 }
-//show_debug_message("("+string(slot_width)+","+string(slot_height)+")");
+
+if(keyboard_check_pressed(vk_tab)){
+	slot_y=slot_y_up;
+	updateCardPosInSlots();
+}
+else if(keyboard_check_released(vk_tab)){
+	slot_y=slot_y_normal;
+	updateCardPosInSlots();
+}
