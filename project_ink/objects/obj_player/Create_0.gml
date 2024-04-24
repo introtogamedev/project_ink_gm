@@ -58,9 +58,9 @@ function instantiateBullet(_card){
 	card_direction.direction = point_direction(x,y-100,mouse_x,mouse_y);
 	card_direction.image_angle = card_direction.direction;
 	if(_card.sprite!=pointer_null){
-		//card_direction.sprite_index=_card.sprite;
-		card_direction.image_xscale=0.5;
-		card_direction.image_yscale=0.5;
+		card_direction.sprite_index=_card.sprite_bullet;
+		card_direction.image_xscale=2;
+		card_direction.image_yscale=2;
 	}
 	card_direction.card=_card;
 }
