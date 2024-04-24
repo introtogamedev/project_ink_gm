@@ -73,8 +73,11 @@ card.damage = 2;
 card.type = -2;
 
 raycast = undefined;
-ray_max_dist = 8;
+ray_max_dist = 8 * cell_size;
 ray_current_dist = ray_max_dist;
+ray_end_x = 0;
+ray_end_y = y;
+
 
 //enemy_box = instance_create_layer(x, y, "Instances", obj_enemy_box);
 //enemy_box.enemy_parent = self;

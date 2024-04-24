@@ -26,7 +26,6 @@
     {"name":"obj_choice_menu","order":11,"path":"objects/obj_choice_menu/obj_choice_menu.yy",},
     {"name":"obj_collectable_card","order":17,"path":"objects/obj_collectable_card/obj_collectable_card.yy",},
     {"name":"obj_enemy_base","order":7,"path":"objects/obj_enemy_base/obj_enemy_base.yy",},
-    {"name":"obj_enemy_box","order":18,"path":"objects/obj_enemy_box/obj_enemy_box.yy",},
     {"name":"obj_explosion","order":9,"path":"objects/obj_explosion/obj_explosion.yy",},
     {"name":"obj_ground","order":1,"path":"objects/obj_ground/obj_ground.yy",},
     {"name":"obj_ground2","order":13,"path":"objects/obj_ground2/obj_ground2.yy",},

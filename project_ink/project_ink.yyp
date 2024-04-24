@@ -46,7 +46,6 @@
     {"id":{"name":"obj_choice_menu","path":"objects/obj_choice_menu/obj_choice_menu.yy",},},
     {"id":{"name":"obj_collectable_card","path":"objects/obj_collectable_card/obj_collectable_card.yy",},},
     {"id":{"name":"obj_enemy_base","path":"objects/obj_enemy_base/obj_enemy_base.yy",},},
-    {"id":{"name":"obj_enemy_box","path":"objects/obj_enemy_box/obj_enemy_box.yy",},},
     {"id":{"name":"obj_explosion","path":"objects/obj_explosion/obj_explosion.yy",},},
     {"id":{"name":"obj_ground","path":"objects/obj_ground/obj_ground.yy",},},
     {"id":{"name":"obj_ground2","path":"objects/obj_ground2/obj_ground2.yy",},},
