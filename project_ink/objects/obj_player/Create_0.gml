@@ -2,10 +2,12 @@ xSpeed = 12;
 vx=0;
 vy=0;
 
+//gravity
 grav_reset=2;
 grav_light=1.3;
 grav = 2;
 
+//jump
 jump_speed = 27;
 jump_timer_reset=20;
 jump_timer = jump_timer_reset;
