@@ -53,7 +53,6 @@ function flip_to_target(_target)
 wall = obj_ground;
 cell_size = 64;
 detect_dist = cell_size * 8;
-raycast_test = noone;
 attack_dist = cell_size * 2;
 melee = false;
 attack_interval = 1;
@@ -71,4 +70,13 @@ health_bar.initializeHealthBar(self, max_hp);
 
 card = makeEmptyCard();
 card.damage = 2;
-card.type = -1;
+card.type = -2;
+
+raycast = undefined;
+ray_max_dist = 8;
+ray_current_dist = ray_max_dist;
+
+//enemy_box = instance_create_layer(x, y, "Instances", obj_enemy_box);
+//enemy_box.enemy_parent = self;
+
+//enemy_sight = noone;
