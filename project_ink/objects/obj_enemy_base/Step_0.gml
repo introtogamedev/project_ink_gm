@@ -149,6 +149,11 @@ switch(current_state)
 						timer += delta_time/1000000;
 					}
 					
+					if(_dist > detect_dist)
+					{
+						inner_state = 2;
+					}
+					
 				}
 			}
 			else if(inner_state == 2)

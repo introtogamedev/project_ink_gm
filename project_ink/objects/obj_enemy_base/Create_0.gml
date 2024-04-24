@@ -58,8 +58,8 @@ attack_dist = cell_size * 2;
 melee = false;
 attack_interval = 1;
 
-max_hp = 10;
-hp = 10;
+max_hp = 5;
+hp = 5;
 
 function lose_hp(_hp)
 {
