@@ -25,11 +25,18 @@ else if (keyboard_check(ord("D")))
 }
 
 // Jumping
-if ((keyboard_check_pressed(ord("W")) || keyboard_check_pressed(vk_space)) && jump_timer>0)
+if((keyboard_check_pressed(ord("W")) || keyboard_check_pressed(vk_space)) && isOnGround){
+	vy=-jump_speed;
+	isOnGround=false;
+}
+if ((keyboard_check(ord("W")) || keyboard_check(vk_space)) && jump_timer>0)
 {
 	sprite_index = anim_jump;
-    vy = -jump_speed;
+    grav=grav_light;
 	--jump_timer;
+}
+if(keyboard_check_released(ord("W")) || keyboard_check_released(vk_space)){
+	grav=grav_reset;
 }
 
 // Gravity
@@ -41,6 +48,7 @@ for(var i=abs(vy);i>-1;--i){
 	if(place_meeting(x,y+sign(vy),obj_ground)){
 		if(vy>0){
 			jump_timer=jump_timer_reset;
+			isOnGround=true;
 			--y;
 		} else{
 			++y;

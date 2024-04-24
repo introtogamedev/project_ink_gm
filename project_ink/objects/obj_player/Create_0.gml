@@ -2,12 +2,14 @@ xSpeed = 12;
 vx=0;
 vy=0;
 
+grav_reset=2;
+grav_light=1.3;
 grav = 2;
 
-jump_speed = 40;
-jump_timer_reset=2;
+jump_speed = 27;
+jump_timer_reset=20;
 jump_timer = jump_timer_reset;
-jump_duration = 15;
+isOnGround=true;
 
 invincible = false;
 invincible_timer = 0;
