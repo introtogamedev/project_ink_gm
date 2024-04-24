@@ -30,6 +30,7 @@ switch(current_state)
 				current_state = next_state;
 				inner_state = 0;
 			}
+			
 		}
 		else if(inner_state == 2)
 		{
@@ -65,12 +66,14 @@ switch(current_state)
 					inner_state = 2;
 				}
 				
+				
 				if(_dist < detect_dist)
 				{
 					change_state(ENEMY_STATES.CHASE);
 					current_state = next_state;
 					inner_state = 0;
 				}
+				
 				
 			}
 			else if(inner_state == 2)
@@ -166,7 +169,7 @@ switch(current_state)
 		break;
 }
 
-health_bar.setPosition(x, y - 16);
+health_bar.setPosition(x, y - 128);
 
 if(current_state == ENEMY_STATES.CHASE)
 {
@@ -182,3 +185,5 @@ if(hp <= 0)
 	instance_destroy(health_bar);
 	instance_destroy();
 }
+
+show_debug_message(sign(image_xscale) == sign(obj_player.image_xscale));
