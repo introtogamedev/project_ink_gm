@@ -21,8 +21,7 @@ if(card.type>=-1){// hit enemy
 		visible=false;
 		_inst.lose_hp(card.damage);
 		_inst.health_bar.setHp(_inst.hp);
-		//onHitEnemy(_inst);
-		//instance_destroy();
+		onHitEnemy(_inst);
+		instance_destroy();
 	}
 }
-show_debug_message("step");
