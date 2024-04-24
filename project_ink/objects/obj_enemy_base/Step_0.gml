@@ -185,3 +185,8 @@ if(hp <= 0)
 	instance_destroy(health_bar);
 	instance_destroy();
 }
+
+raycast = collision_line(x, y, x + image_xscale * ray_current_dist, y, obj_player, false, true);
+
+
+
