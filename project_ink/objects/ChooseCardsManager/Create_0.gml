@@ -6,30 +6,35 @@ global.card_collection_count=7;
 global.card_collection=array_create(global.card_collection_count);
 global.card_collection[0]={
 	sprite: spr_card1,
+	sprite_bullet: spr_bullet_attack,
 	_name: "普攻",
 	damage: 1,
 	type: 1
 };
 global.card_collection[1]={
 	sprite: spr_card2,
+	sprite_bullet: spr_bullet_critical_attack,
 	_name: "重击",
 	damage: 2,
 	type: 2
 }
 global.card_collection[2]={
 	sprite: spr_card3,
+	sprite_bullet: spr_bullet_fast,
 	_name: "迅势",
 	damage: 0,
 	type: 3
 }
 global.card_collection[3]={
 	sprite: spr_card4,
+	sprite_bullet: spr_bullet_freeze,
 	_name: "凝霜",
 	damage: 0,
 	type: 4
 }
 global.card_collection[4]={
 	sprite: spr_card5,
+	sprite_bullet: spr_bullet_explosion,
 	_name: "破阵",
 	damage: 1,
 	aoe: 1,
@@ -37,12 +42,14 @@ global.card_collection[4]={
 }
 global.card_collection[5]={
 	sprite: spr_card6,
+	sprite_bullet: spr_bullet_hurricane,
 	_name: "疾风",
 	damage: 4,
 	type: 6
 }
 global.card_collection[6]={
 	sprite: spr_card7,
+	sprite_bullet: spr_bullet_connect,
 	_name: "连附",
 	damage: 0,
 	type: 7
