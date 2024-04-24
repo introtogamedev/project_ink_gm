@@ -186,7 +186,13 @@ if(hp <= 0)
 	instance_destroy();
 }
 
-raycast = collision_line(x, y, x + image_xscale * ray_current_dist, y, obj_player, false, true);
 
 
+ray_end_x = x + image_xscale * ray_current_dist;
+ray_end_y = y;
 
+raycast = collision_line(x, y, ray_end_x, y, obj_player, false, true);
+
+ray_current_dist -= 1;
+
+show_debug_message(raycast);
