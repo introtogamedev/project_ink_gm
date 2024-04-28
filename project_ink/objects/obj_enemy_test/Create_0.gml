@@ -22,15 +22,23 @@ isGround=collision_point(x, bottom+1,obj_ground_base,false,true);
 
 //detect player
 detect_bar=instance_create_layer(x, y, "Instances", obj_health_bar);
-detect_bar.initializeHealthBar(id, 12);
+detect_bar.initializeHealthBar(id, 100);
 detect_bar.frontColor=c_red;
 detect_bar.backColor=c_grey;
 detect_bar.setWidth(70);
 detect_bar.setHeight(9);
 detect_bar.setHp(0);
 detect_bar.offsety=-100;
-detect_dist= 600;
+detect_dist= 700;
 detect_dist_sqr=detect_dist*detect_dist;
+
+//health bar
+health_bar=instance_create_layer(x, y, "Instances", obj_health_bar);
+health_bar.initializeHealthBar(id, 20);
+health_bar.setWidth(70);
+health_bar.setHeight(9);
+health_bar.setHp(health_bar.maxHp);
+health_bar.offsety=-125;
 
 //attack
 attack_dist=300;
@@ -38,6 +46,18 @@ attack_dist_sqr=attack_dist*attack_dist;
 
 //detect offset
 player_offsety=-90;
+
+//lose hp
+function lose_hp(_hp){
+	health_bar.setHp(health_bar.hp-_hp);
+	if(state_cur!=state_attack or state_cur!=state_chase){
+		detect_bar.setHp(detect_bar.maxHp);
+		state_goto(state_chase);
+	}
+	state_goto(state_chase);
+	if(health_bar.hp==0){
+	}
+}
 
 //state machine
 function state_goto(state){
@@ -147,6 +167,7 @@ state_walk={
 	is_jumping_down:false,
 	jump_prev_sidelyUp: pointer_null,
 	onenter: function(){
+		obj.image_xscale=walk_dir;
 	},
 	update: function(){
 		//walk
@@ -197,7 +218,7 @@ state_walk={
 				obj.state_goto(obj.state_chase);
 			}
 		} else{
-			obj.detect_bar.setHp(obj.detect_bar.hp-0.1);
+			obj.detect_bar.setHp(obj.detect_bar.hp-0.5);
 		}
 	},
 	onexit: function(){
@@ -221,6 +242,8 @@ state_chase={
 	obj: pointer_null,
 	walk_dir: 1,
 	walk_speed: 4,
+	//dodge
+	dodge_advance: 100,
 	onenter: function(){
 	},
 	update: function(){
@@ -248,7 +271,30 @@ state_chase={
 			if(dist<obj.attack_dist_sqr){ //close enough to shoot the player
 				obj.state_goto(obj.state_attack);
 			} else if(dist>obj.detect_dist_sqr){ //if the player is too far, exit chase state
+				obj.state_walk.walk_dir=walk_dir;
 				obj.state_goto(obj.state_walk);
+			}
+		}
+		//dodge
+		//left
+		var cld=collision_line(obj.left-dodge_advance,obj.bottom,obj.left-dodge_advance,obj.top,obj_andytesting_card,false,true);
+		if(cld!=noone and cld.card.type!=-2){ //if is player's cards
+			obj.state_dodge.dir=-1;
+			obj.state_dodge.prev_state=obj.state_chase;
+			obj.state_goto(obj.state_dodge);
+		} else{ //dodge right
+			cld=collision_line(obj.right+dodge_advance,obj.bottom,obj.right+dodge_advance,obj.top,obj_andytesting_card,false,true);
+			if(cld!=noone and cld.card.type!=-2){
+				obj.state_dodge.dir=1;
+				obj.state_dodge.prev_state=obj.state_chase;
+				obj.state_goto(obj.state_dodge);
+			} else{
+				cld=collision_line(obj.left,obj.top-dodge_advance,obj.right,obj.top-dodge_advance,obj_andytesting_card,false,true);
+				if(cld!=noone and cld.card.type!=-2){
+					obj.state_dodge.dir=0;
+					obj.state_dodge.prev_state=obj.state_chase;
+					obj.state_goto(obj.state_dodge);
+				}
 			}
 		}
 	},
@@ -305,8 +351,6 @@ state_attack={
 	onexit: function(){
 	},
 	draw: function(){
-		draw_set_color(c_white);
-		draw_line(obj.right+dodge_advance,obj.bottom,obj.right+dodge_advance,obj.top);
 	}
 }
 state_dodge={

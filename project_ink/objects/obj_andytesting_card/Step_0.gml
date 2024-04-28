@@ -13,6 +13,12 @@ if(card.type>=-1){// hit enemy
 		onHitEnemy(_inst);
 		instance_destroy();
 	}
+	
+	_inst=instance_place(x,y,obj_enemy_test);
+	if(_inst){
+		_inst.lose_hp(card.damage);
+		instance_destroy();
+	}
 } else{ // hit player
 	var _inst = instance_place(x, y, obj_player)
 
