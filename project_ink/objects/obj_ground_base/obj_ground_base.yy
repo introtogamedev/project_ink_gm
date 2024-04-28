@@ -1,18 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"obj_ground2",
+  "%Name":"obj_ground_base",
   "eventList":[],
   "managed":true,
-  "name":"obj_ground2",
+  "name":"obj_ground_base",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
     "path":"folders/Objects.yy",
   },
-  "parentObjectId":{
-    "name":"obj_ground_base",
-    "path":"objects/obj_ground_base/obj_ground_base.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,10 +27,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_ground2",
-    "path":"sprites/spr_ground2/spr_ground2.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

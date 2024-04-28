@@ -194,5 +194,3 @@ ray_end_y = y;
 raycast = collision_line(x, y, ray_end_x, y, obj_player, false, true);
 
 ray_current_dist -= 1;
-
-show_debug_message(raycast);
