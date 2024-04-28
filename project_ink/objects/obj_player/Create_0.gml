@@ -50,9 +50,11 @@ health_bar.setHeight(10);
 health_bar.offsety=-185;
 
 function addBullet(_card){
+	audio_play_sound(snd_card_sfx, 1,false);
     ds_queue_enqueue(bulletQueue, _card);
 }
 function instantiateBullet(_card){
+	audio_play_sound(snd_card_sfx, 1,false);
 	card_direction = instance_create_layer(x, y-120, "Instances", obj_andytesting_card);
 	card_direction.speed = 30;
 	card_direction.direction = point_direction(x,y-100,mouse_x,mouse_y);
