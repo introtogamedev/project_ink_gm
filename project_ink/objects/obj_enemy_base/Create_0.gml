@@ -64,7 +64,11 @@ hp = 5;
 function lose_hp(_hp)
 {
 	hp -= _hp;
-	obj_enemy_manager.decrease_enemy_count();
+	if(hp<=0){
+		obj_enemy_manager.decrease_enemy_count();
+		health_bar.destroy();
+		instance_destroy();
+	}
 }
 
 health_bar = instance_create_layer(x, y, "Instances", obj_health_bar);

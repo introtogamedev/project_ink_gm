@@ -35,7 +35,7 @@ detect_dist_sqr=detect_dist*detect_dist;
 
 //health bar
 health_bar=instance_create_layer(x, y, "Instances", obj_health_bar);
-health_bar.initializeHealthBar(id, 20);
+health_bar.initializeHealthBar(id, 1);
 health_bar.setWidth(70);
 health_bar.setHeight(9);
 health_bar.setHp(health_bar.maxHp);
@@ -62,10 +62,10 @@ function lose_hp(_card){
 	} else if(state_cur!=state_attack and state_cur!=state_chase){
 		state_goto(state_chase);
 	}
-	obj_enemy_manager.decrease_enemy_count();
 	if(health_bar.hp==0){
 		health_bar.destroy();
 		detect_bar.destroy();
+		obj_enemy_manager.decrease_enemy_count();
 		instance_destroy();
 	}
 }
