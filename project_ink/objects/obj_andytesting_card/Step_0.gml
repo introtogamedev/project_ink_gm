@@ -16,7 +16,8 @@ if(card.type>=-1){// hit enemy
 	
 	_inst=instance_place(x,y,obj_enemy_test);
 	if(_inst){
-		_inst.lose_hp(card.damage);
+		_inst.lose_hp(card);
+		onHitEnemy(_inst);
 		instance_destroy();
 	}
 } else{ // hit player
