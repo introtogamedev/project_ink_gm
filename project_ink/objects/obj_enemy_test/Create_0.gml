@@ -48,14 +48,19 @@ attack_dist_sqr=attack_dist*attack_dist;
 player_offsety=-90;
 
 //lose hp
-function lose_hp(_hp){
-	health_bar.setHp(health_bar.hp-_hp);
-	if(state_cur!=state_attack or state_cur!=state_chase){
-		detect_bar.setHp(detect_bar.maxHp);
+function lose_hp(_card){
+	health_bar.setHp(health_bar.hp-_card.damage);
+	detect_bar.setHp(detect_bar.maxHp);
+	if(_card.type>4){
+		state_hit.dir=sign(obj_player.x-x);
+		state_goto(state_hit);
+	} else if(state_cur!=state_attack and state_cur!=state_chase){
 		state_goto(state_chase);
 	}
-	state_goto(state_chase);
 	if(health_bar.hp==0){
+		health_bar.destroy();
+		detect_bar.destroy();
+		instance_destroy();
 	}
 }
 
@@ -276,27 +281,7 @@ state_chase={
 			}
 		}
 		//dodge
-		//left
-		var cld=collision_line(obj.left-dodge_advance,obj.bottom,obj.left-dodge_advance,obj.top,obj_andytesting_card,false,true);
-		if(cld!=noone and cld.card.type!=-2){ //if is player's cards
-			obj.state_dodge.dir=-1;
-			obj.state_dodge.prev_state=obj.state_chase;
-			obj.state_goto(obj.state_dodge);
-		} else{ //dodge right
-			cld=collision_line(obj.right+dodge_advance,obj.bottom,obj.right+dodge_advance,obj.top,obj_andytesting_card,false,true);
-			if(cld!=noone and cld.card.type!=-2){
-				obj.state_dodge.dir=1;
-				obj.state_dodge.prev_state=obj.state_chase;
-				obj.state_goto(obj.state_dodge);
-			} else{
-				cld=collision_line(obj.left,obj.top-dodge_advance,obj.right,obj.top-dodge_advance,obj_andytesting_card,false,true);
-				if(cld!=noone and cld.card.type!=-2){
-					obj.state_dodge.dir=0;
-					obj.state_dodge.prev_state=obj.state_chase;
-					obj.state_goto(obj.state_dodge);
-				}
-			}
-		}
+		
 	},
 	onexit: function(){
 	},
@@ -326,6 +311,7 @@ state_attack={
 			obj.state_goto(obj.state_chase);
 		}
 		//dodge
+		/*
 		//left
 		var cld=collision_line(obj.left-dodge_advance,obj.bottom,obj.left-dodge_advance,obj.top,obj_andytesting_card,false,true);
 		if(cld!=noone and cld.card.type!=-2){ //if is player's cards
@@ -346,7 +332,7 @@ state_attack={
 					obj.state_goto(obj.state_dodge);
 				}
 			}
-		}
+		}*/
 	},
 	onexit: function(){
 	},
@@ -391,6 +377,43 @@ state_dodge={
 	draw: function(){
 	}
 }
+state_hit={
+	obj: pointer_null,
+	dir: 0, //-1: left, 0: up, 1: right:
+	jump_height: -10,
+	dodge_speed: 28,
+	dodge_speed_damp: 0.2,
+	dodge_timer: 0,
+	onenter: function(){
+		dodge_timer=55;
+		if(dir==0){
+			randomize();
+			if(irandom(1)==1){
+				obj.vx=dodge_speed;
+			} else{
+				obj.vx=-dodge_speed;
+			}
+		} else{
+			obj.vy=jump_height;
+			obj.vx=dir==-1?dodge_speed:-dodge_speed;
+		}
+	},
+	update: function(){
+		if(obj.vx!=0){
+			obj.vx=lerp(obj.vx, 0, dodge_speed_damp);
+		}
+		if(abs(obj.vx)<=1){
+			obj.vx=0;
+		}
+		--dodge_timer;
+		if(dodge_timer==0)
+			obj.state_goto(obj.state_chase);
+	},
+	onexit: function(){
+	},
+	draw: function(){
+	}
+}
 #endregion
 state_walk.obj=id;
 state_jump_down.obj=id;
@@ -398,5 +421,6 @@ state_idle.obj=id;
 state_chase.obj=id;
 state_attack.obj=id;
 state_dodge.obj=id;
+state_hit.obj=id;
 
 state_cur=state_walk;

@@ -54,3 +54,6 @@ function initializeHealthBar(followingObject, max_hp){
 	hpPercentage=hp/maxHp;
 	target=followingObject;
 }
+function destroy(){
+	instance_destroy();
+}
