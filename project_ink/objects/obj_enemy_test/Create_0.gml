@@ -43,6 +43,9 @@ health_bar.offsety=-125;
 //attack
 attack_dist=400;
 attack_dist_sqr=attack_dist*attack_dist;
+//melee
+melee_dist=90;
+melee_dist_sqr=melee_dist*melee_dist;
 
 //detect offset
 player_offsety=-90;
@@ -291,9 +294,9 @@ state_chase={
 }
 state_attack={
 	obj: pointer_null,
-	attack_interval: 80,
+	attack_interval: 30,
 	attack_interval_counter: 0,
-	first_attack_interval: 50,
+	first_attack_interval: 20,
 	//dodge
 	dodge_advance: 100,
 	onenter: function(){
@@ -415,6 +418,34 @@ state_hit={
 	draw: function(){
 	}
 }
+state_melee={
+	obj: pointer_null,
+	melee_interval: 50,
+	melee_timer: 0,
+	damage: 3,
+	prev_state: pointer_null,
+	onenter: function(){
+		obj.vx=0;
+		melee_timer=0;
+	},
+	update: function(){
+		if(melee_timer==0){
+			melee_timer=melee_interval;
+			obj_player.lose_hp(damage);
+		}
+		--melee_timer;
+		if(obj.distSqrToPlayer()>obj.melee_dist_sqr){
+			if(prev_state==obj.state_attack)
+				obj.state_goto(prev_state);
+			else
+				obj.state_goto(obj.state_chase);
+		}
+	},
+	onexit: function(){
+	},
+	draw: function(){
+	}
+}
 #endregion
 state_walk.obj=id;
 state_jump_down.obj=id;
@@ -423,5 +454,6 @@ state_chase.obj=id;
 state_attack.obj=id;
 state_dodge.obj=id;
 state_hit.obj=id;
+state_melee.obj=id;
 
 state_cur=state_walk;
