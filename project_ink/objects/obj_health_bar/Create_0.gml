@@ -45,6 +45,7 @@ function setMaxHp(h){
 function setHp(h){
 	hp=h;
 	if(hp<0) hp=0;
+	else if(hp>maxHp) hp=maxHp;
 	hpPercentage=hp/maxHp;
 }
 function initializeHealthBar(followingObject, max_hp){

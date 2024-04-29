@@ -191,8 +191,14 @@ if(hp <= 0)
 ray_end_x = x + image_xscale * ray_current_dist;
 ray_end_y = y;
 
-raycast = collision_line(x, y, ray_end_x, y, obj_player, false, true);
+raycast = collision_line_list(x, y, ray_end_x, ray_end_y, obj_ground, false, true, raycast_list, true);
 
-ray_current_dist -= 1;
+var _inst = ds_list_find_value(raycast_list, 0);
+if(raycast != 0)
+{
+	ray_current_dist = abs(x - _inst.x);
+}
 
-show_debug_message(raycast);
+ray_current_dist = clamp(ray_current_dist, 0, ray_max_dist);
+
+show_debug_message(raycast_list);
