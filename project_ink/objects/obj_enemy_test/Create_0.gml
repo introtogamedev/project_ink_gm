@@ -41,7 +41,7 @@ health_bar.setHp(health_bar.maxHp);
 health_bar.offsety=-125;
 
 //attack
-attack_dist=300;
+attack_dist=400;
 attack_dist_sqr=attack_dist*attack_dist;
 
 //detect offset
@@ -51,6 +51,7 @@ player_offsety=-90;
 function lose_hp(_card){
 	health_bar.setHp(health_bar.hp-_card.damage);
 	detect_bar.setHp(detect_bar.maxHp);
+	audio_play_sound(snd_hit,3,false);
 	if(_card.type>4){
 		state_hit.dir=sign(obj_player.x-x);
 		state_goto(state_hit);
@@ -230,7 +231,7 @@ state_walk={
 		//show_debug_message("exit walk state");
 	},
 	draw: function(){
-		draw_set_color(c_white);
+		//draw_set_color(c_white);
 		//jump lines
 		//draw_line(obj.x,obj.bottom-2,obj.x,obj.bottom-jump_max_height);
 		//draw_line(obj.x+jump_x_in_advance*walk_dir,obj.bottom-2,obj.x+jump_x_in_advance*walk_dir,obj.bottom-jump_max_height);
