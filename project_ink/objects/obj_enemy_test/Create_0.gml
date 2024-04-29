@@ -1,3 +1,4 @@
+++global.enemy_count;
 //frame stepper
 isPaused=false;
 stepFrame=false;
@@ -61,6 +62,7 @@ function lose_hp(_card){
 	} else if(state_cur!=state_attack and state_cur!=state_chase){
 		state_goto(state_chase);
 	}
+	obj_enemy_manager.decrease_enemy_count();
 	if(health_bar.hp==0){
 		health_bar.destroy();
 		detect_bar.destroy();

@@ -1,3 +1,4 @@
+global.enemy_count=0;
 //draw settings
 draw_set_valign(fa_top);
 

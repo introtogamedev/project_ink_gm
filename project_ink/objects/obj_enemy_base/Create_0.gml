@@ -1,3 +1,4 @@
+++global.enemy_count;
 enum ENEMY_STATES
 {
 	IDLE,
@@ -63,6 +64,7 @@ hp = 5;
 function lose_hp(_hp)
 {
 	hp -= _hp;
+	obj_enemy_manager.decrease_enemy_count();
 }
 
 health_bar = instance_create_layer(x, y, "Instances", obj_health_bar);
