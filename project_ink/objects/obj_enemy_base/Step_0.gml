@@ -200,5 +200,3 @@ if(raycast != 0)
 }
 
 ray_current_dist = clamp(ray_current_dist, 0, ray_max_dist);
-
-show_debug_message(raycast_list);
