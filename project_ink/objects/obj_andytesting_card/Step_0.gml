@@ -10,6 +10,8 @@ if(card.type>=-1){// hit enemy
 		visible=false;
 		_inst.lose_hp(card.damage);
 		_inst.health_bar.setHp(_inst.hp);
+		var obj=instance_create_layer(_inst.x,_inst.y-_inst.sprite_height,"Instances", obj_damage_indicator);
+		obj.damage=card.damage;
 		onHitEnemy(_inst);
 		instance_destroy();
 	}
@@ -18,6 +20,8 @@ if(card.type>=-1){// hit enemy
 	if(_inst){
 		_inst.lose_hp(card);
 		onHitEnemy(_inst);
+		var obj=instance_create_layer(_inst.x,_inst.y-_inst.sprite_height,"Instances", obj_damage_indicator);
+		obj.damage=card.damage;
 		instance_destroy();
 	}
 } else{ // hit player
@@ -28,6 +32,8 @@ if(card.type>=-1){// hit enemy
 		visible=false;
 		_inst.lose_hp(card.damage);
 		_inst.health_bar.setHp(_inst.hp);
+		var obj=instance_create_layer(_inst.x,_inst.y-_inst.sprite_height,"Instances", obj_damage_indicator);
+		obj.damage=card.damage;
 		onHitEnemy(_inst);
 		instance_destroy();
 	}

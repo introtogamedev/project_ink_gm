@@ -54,6 +54,7 @@
     {"id":{"name":"obj_health_bar","path":"objects/obj_health_bar/obj_health_bar.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
+    {"id":{"name":"obj_damage_indicator","path":"objects/obj_damage_indicator/obj_damage_indicator.yy",},},
     {"id":{"name":"RoomManager","path":"objects/RoomManager/RoomManager.yy",},},
     {"id":{"name":"WinSceneManager","path":"objects/WinSceneManager/WinSceneManager.yy",},},
     {"id":{"name":"Charles","path":"rooms/Charles/Charles.yy",},},

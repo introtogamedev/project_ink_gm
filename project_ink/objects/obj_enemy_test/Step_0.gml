@@ -10,6 +10,11 @@ if(!isPaused or stepFrame){
 stepFrame=false;
 	
 state_cur.update();
+if(state_cur!=state_melee and distSqrToPlayer()<melee_dist_sqr){
+	state_melee.prev_state=state_cur;
+	detect_bar.setHp(detect_bar.maxHp);
+	state_goto(state_melee);
+}
 //show_debug_message(collision_point(mouse_x,mouse_y,obj_ground, false, true));
 // Jumping
 

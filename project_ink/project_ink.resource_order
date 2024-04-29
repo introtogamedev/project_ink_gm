@@ -34,6 +34,7 @@
     {"name":"obj_health_bar","order":9,"path":"objects/obj_health_bar/obj_health_bar.yy",},
     {"name":"obj_player","order":2,"path":"objects/obj_player/obj_player.yy",},
     {"name":"obj_wall","order":4,"path":"objects/obj_wall/obj_wall.yy",},
+    {"name":"obj_damage_indicator","order":19,"path":"objects/obj_damage_indicator/obj_damage_indicator.yy",},
     {"name":"RoomManager","order":3,"path":"objects/RoomManager/RoomManager.yy",},
     {"name":"WinSceneManager","order":16,"path":"objects/WinSceneManager/WinSceneManager.yy",},
     {"name":"Charles","order":2,"path":"rooms/Charles/Charles.yy",},
