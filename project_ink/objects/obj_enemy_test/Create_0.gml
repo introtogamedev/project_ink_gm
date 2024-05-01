@@ -66,7 +66,7 @@ function lose_hp(_card){
 		health_bar.destroy();
 		detect_bar.destroy();
 		obj_enemy_manager.decrease_enemy_count();
-		instance_destroy();
+		state_goto(state_die);
 	}
 }
 
@@ -117,6 +117,18 @@ function enemiesAround(){
 	return (_x*_x+_y*_y)<detect_dist_sqr;
 }
 
+state_die={
+	obj: pointer_null,
+	onenter: function(){
+		obj.anim_goto(obj.am_die);
+	},
+	update: function(){
+	},
+	onexit: function(){
+	},
+	draw: function(){
+	}
+}
 state_idle={
 	obj: pointer_null,
 	prev_state: pointer_null,
@@ -457,5 +469,85 @@ state_attack.obj=id;
 state_dodge.obj=id;
 state_hit.obj=id;
 state_melee.obj=id;
+state_die.obj=id;
 
 state_cur=state_walk;
+
+//animation
+am_idle={
+	obj: pointer_null,
+	sprite: spr_enemy_base,
+	idx: 0,
+	interval: 10,
+	timer: 0,
+	loop: true,
+	onEndPlay: pointer_null,
+	prevState: pointer_null,
+	onenter: function(){
+		timer=interval;
+		idx=0;
+	},
+	update: function(){
+		--timer;
+		if(timer==0){
+			timer=interval;
+			++idx;
+			if(idx==frames){
+				idx=0;
+				if(!loop){
+					if(onEndPlay!=pointer_null) onEndPlay();
+					if(prevState!=pointer_null) obj.anim_goto(prevState);
+				}
+			}
+		}
+	},
+	onexit: function(){
+	}
+};
+am_die={
+	obj: pointer_null,
+	sprite: spr_enemy_die,
+	idx: 0,
+	interval: 10,
+	timer: 0,
+	loop: false,
+	onEndPlay: function(){
+		instance_destroy(obj);
+	},
+	prevState: pointer_null,
+	onenter: function(){
+		timer=interval;
+		idx=0;
+	},
+	update: function(){
+		--timer;
+		if(timer==0){
+			timer=interval;
+			++idx;
+			if(idx==frames){
+				idx=0;
+				if(!loop){
+					if(onEndPlay!=pointer_null) onEndPlay();
+					if(prevState!=pointer_null) obj.anim_goto(prevState);
+				}
+			}
+		}
+	},
+	onexit: function(){
+	}
+};
+am_idle.obj=id;
+am_die.obj=id;
+
+am_idle.frames=sprite_get_number(am_idle.sprite);
+am_die.frames=sprite_get_number(am_die.sprite);
+
+anim_cur=am_idle;
+anim_cur.onenter();
+function anim_goto(am){
+	if(anim_cur!=pointer_null){
+		anim_cur.onexit();
+	}
+	anim_cur=am;
+	am.onenter();
+}
