@@ -35,7 +35,7 @@ detect_dist_sqr=detect_dist*detect_dist;
 
 //health bar
 health_bar=instance_create_layer(x, y, "Instances", obj_health_bar);
-health_bar.initializeHealthBar(id, 1);
+health_bar.initializeHealthBar(id, 10);
 health_bar.setWidth(70);
 health_bar.setHeight(9);
 health_bar.setHp(health_bar.maxHp);
