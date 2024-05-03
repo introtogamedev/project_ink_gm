@@ -1,4 +1,4 @@
-anim_cur.update();
+anim_cur.update(id);
 if(keyboard_check_pressed(ord("O"))){
 	isPaused=!isPaused;
 }
