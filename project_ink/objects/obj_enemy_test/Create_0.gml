@@ -445,6 +445,7 @@ state_melee={
 	update: function(){
 		if(melee_timer==0){
 			melee_timer=melee_interval;
+			obj.anim_goto(obj.am_melee);
 			obj_player.lose_hp(damage);
 		}
 		--melee_timer;
@@ -475,7 +476,6 @@ state_cur=state_walk;
 
 //animation
 am_idle={
-	obj: pointer_null,
 	sprite: spr_enemy_base,
 	idx: 0,
 	interval: 10,
@@ -487,7 +487,7 @@ am_idle={
 		timer=interval;
 		idx=0;
 	},
-	update: function(){
+	update: function(obj){
 		--timer;
 		if(timer==0){
 			timer=interval;
@@ -505,12 +505,78 @@ am_idle={
 	}
 };
 am_die={
-	obj: pointer_null,
 	sprite: spr_enemy_die,
 	idx: 0,
 	interval: 10,
 	timer: 0,
 	loop: false,
+	prevState: pointer_null,
+	onEndPlay: function(obj){
+		instance_destroy(obj);
+	},
+	prevState: pointer_null,
+	onenter: function(){
+		timer=interval;
+		idx=0;
+	},
+	update: function(obj){
+		--timer;
+		if(timer==0){
+			timer=interval;
+			++idx;
+			if(idx==frames){
+				idx=0;
+				if(!loop){
+					if(onEndPlay!=pointer_null) onEndPlay(obj);
+					if(prevState!=pointer_null) obj.anim_goto(prevState);
+				}
+			}
+		}
+	},
+	onexit: function(){
+	}
+};
+am_melee={
+	sprite: spr_enemy_attack,
+	idx: 0,
+	interval: 10,
+	timer: 0,
+	loop: false,
+	prevState: noone,
+	onEndPlay: function(){
+		instance_destroy(obj);
+	},
+	onenter: function(){
+		timer=interval;
+		idx=0;
+		prevState=obj.am_idle;
+	},
+	update: function(obj){
+		--timer;
+		if(timer==0){
+			timer=interval;
+			++idx;
+			if(idx==frames){
+				idx=0;
+				if(!loop){
+					if(onEndPlay!=noone) onEndPlay();
+					if(prevState!=noone){
+						obj.anim_goto(obj.am_idle);
+					}
+				}
+			}
+		}
+	},
+	onexit: function(){
+	}
+};
+am_attack={
+	sprite: spr_enemy_range_attack,
+	idx: 0,
+	interval: 10,
+	timer: 0,
+	loop: false,
+	prevState: pointer_null,
 	onEndPlay: function(){
 		instance_destroy(obj);
 	},
@@ -519,7 +585,7 @@ am_die={
 		timer=interval;
 		idx=0;
 	},
-	update: function(){
+	update: function(obj){
 		--timer;
 		if(timer==0){
 			timer=interval;
@@ -536,11 +602,11 @@ am_die={
 	onexit: function(){
 	}
 };
-am_idle.obj=id;
-am_die.obj=id;
 
 am_idle.frames=sprite_get_number(am_idle.sprite);
 am_die.frames=sprite_get_number(am_die.sprite);
+am_attack.frames=sprite_get_number(am_attack.sprite);
+am_melee.frames=sprite_get_number(am_melee.sprite);
 
 anim_cur=am_idle;
 anim_cur.onenter();
