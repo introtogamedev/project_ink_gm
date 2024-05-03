@@ -53,6 +53,7 @@ player_offsety=-90;
 
 //lose hp
 function lose_hp(_card){
+	if(anim_cur==am_die) return;
 	health_bar.setHp(health_bar.hp-_card.damage);
 	detect_bar.setHp(detect_bar.maxHp);
 	audio_play_sound(snd_hit,3,false);
@@ -121,6 +122,7 @@ state_die={
 	obj: pointer_null,
 	onenter: function(){
 		obj.anim_goto(obj.am_die);
+		obj.vx=0;
 	},
 	update: function(){
 	},
@@ -322,6 +324,7 @@ state_attack={
 		--attack_interval_counter;
 		//shoot
 		if(attack_interval_counter==0){
+			obj.anim_goto(obj.am_attack);
 			attack_interval_counter=attack_interval;
 			createBullet2(obj.x, obj.y, point_direction(obj.x,obj.y, obj_player.x,obj_player.y+obj.player_offsety));
 		}
@@ -483,39 +486,7 @@ am_idle={
 	loop: true,
 	onEndPlay: pointer_null,
 	prevState: pointer_null,
-	onenter: function(){
-		timer=interval;
-		idx=0;
-	},
-	update: function(obj){
-		--timer;
-		if(timer==0){
-			timer=interval;
-			++idx;
-			if(idx==frames){
-				idx=0;
-				if(!loop){
-					if(onEndPlay!=pointer_null) onEndPlay();
-					if(prevState!=pointer_null) obj.anim_goto(prevState);
-				}
-			}
-		}
-	},
-	onexit: function(){
-	}
-};
-am_die={
-	sprite: spr_enemy_die,
-	idx: 0,
-	interval: 10,
-	timer: 0,
-	loop: false,
-	prevState: pointer_null,
-	onEndPlay: function(obj){
-		instance_destroy(obj);
-	},
-	prevState: pointer_null,
-	onenter: function(){
+	onenter: function(obj){
 		timer=interval;
 		idx=0;
 	},
@@ -533,20 +504,52 @@ am_die={
 			}
 		}
 	},
-	onexit: function(){
+	onexit: function(obj){
+	}
+};
+am_die={
+	sprite: spr_enemy_die,
+	idx: 0,
+	interval: 10,
+	timer: 0,
+	loop: false,
+	prevState: pointer_null,
+	onEndPlay: function(obj){
+		instance_destroy(obj);
+	},
+	prevState: pointer_null,
+	onenter: function(obj){
+		timer=interval;
+		idx=0;
+	},
+	update: function(obj){
+		--timer;
+		if(timer==0){
+			timer=interval;
+			++idx;
+			if(idx==frames){
+				idx=0;
+				if(!loop){
+					if(onEndPlay!=pointer_null) onEndPlay(obj);
+					if(prevState!=pointer_null) obj.anim_goto(prevState);
+				}
+			}
+		}
+	},
+	onexit: function(obj){
 	}
 };
 am_melee={
 	sprite: spr_enemy_attack,
 	idx: 0,
-	interval: 10,
+	interval: 6,
 	timer: 0,
 	loop: false,
 	prevState: noone,
-	onEndPlay: function(){
-		instance_destroy(obj);
+	onEndPlay: function(obj){
+		
 	},
-	onenter: function(){
+	onenter: function(obj){
 		timer=interval;
 		idx=0;
 		prevState=obj.am_idle;
@@ -559,7 +562,7 @@ am_melee={
 			if(idx==frames){
 				idx=0;
 				if(!loop){
-					if(onEndPlay!=noone) onEndPlay();
+					if(onEndPlay!=noone) onEndPlay(obj);
 					if(prevState!=noone){
 						obj.anim_goto(obj.am_idle);
 					}
@@ -567,7 +570,7 @@ am_melee={
 			}
 		}
 	},
-	onexit: function(){
+	onexit: function(obj){
 	}
 };
 am_attack={
@@ -577,11 +580,11 @@ am_attack={
 	timer: 0,
 	loop: false,
 	prevState: pointer_null,
-	onEndPlay: function(){
-		instance_destroy(obj);
+	onEndPlay: function(obj){
+		obj.anim_goto(obj.am_idle);
 	},
 	prevState: pointer_null,
-	onenter: function(){
+	onenter: function(obj){
 		timer=interval;
 		idx=0;
 	},
@@ -593,13 +596,12 @@ am_attack={
 			if(idx==frames){
 				idx=0;
 				if(!loop){
-					if(onEndPlay!=pointer_null) onEndPlay();
-					if(prevState!=pointer_null) obj.anim_goto(prevState);
+					if(onEndPlay!=pointer_null) onEndPlay(obj);
 				}
 			}
 		}
 	},
-	onexit: function(){
+	onexit: function(obj){
 	}
 };
 
@@ -609,11 +611,11 @@ am_attack.frames=sprite_get_number(am_attack.sprite);
 am_melee.frames=sprite_get_number(am_melee.sprite);
 
 anim_cur=am_idle;
-anim_cur.onenter();
+anim_cur.onenter(id);
 function anim_goto(am){
 	if(anim_cur!=pointer_null){
-		anim_cur.onexit();
+		anim_cur.onexit(id);
 	}
 	anim_cur=am;
-	am.onenter();
+	am.onenter(id);
 }

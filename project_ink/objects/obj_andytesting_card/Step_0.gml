@@ -30,8 +30,6 @@ if(card.type>=-1){// hit enemy
 	if(_inst)
 	{
 		visible=false;
-		var obj=instance_create_layer(_inst.x,_inst.y-_inst.sprite_height,"Instances", obj_damage_indicator);
-		obj.damage=card.damage;
 		_inst.lose_hp(card.damage);
 		_inst.health_bar.setHp(_inst.hp);
 		onHitEnemy(_inst);

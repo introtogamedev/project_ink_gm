@@ -67,6 +67,8 @@ function instantiateBullet(_card){
 	card_direction.card=_card;
 }
 function lose_hp(h){
+	var obj=instance_create_layer(x,y-sprite_height,"Instances", obj_damage_indicator);
+	obj.damage=h;
 	hp-=h;
 	if(hp<0){
 		room_goto(Scene_GameOver);
